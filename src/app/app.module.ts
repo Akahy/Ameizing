@@ -10,7 +10,7 @@ import { routerConfig } from './components/top-menu/topMenu.config';
 import { AppComponent }  from './app.component';
 import { TopMenuComponent }  from './components/top-menu/topMenu.component';
 import { DashboardComponent }  from './components/dashboard/dashboard.component';
-
+import { RecentGamesComponent } from './components/dashboard/recent-games/recentGames.component';
 @NgModule({
   imports:      [ BrowserModule,
                   RouterModule.forRoot(routerConfig),
@@ -18,7 +18,8 @@ import { DashboardComponent }  from './components/dashboard/dashboard.component'
    ],
   declarations: [ AppComponent,
                   TopMenuComponent,
-                  DashboardComponent
+                  DashboardComponent,
+                  RecentGamesComponent
    ],
   bootstrap:    [ AppComponent ]
 })

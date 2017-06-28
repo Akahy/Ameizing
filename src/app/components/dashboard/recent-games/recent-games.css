@@ -1,0 +1,35 @@
+
+
+.defeat {
+  border-style: solid;
+  border-color: red;
+  text-align: right;
+}
+
+.draw {
+  border-style: solid;
+  border-color: orange;
+  text-align: right;
+}
+
+.victory {
+  border-style: solid;
+  border-color: green;
+  text-align: right;
+}
+
+.defeat_arrow {
+  color: red
+}
+
+.draw_arrow {
+  color: orange
+}
+
+.victory_arrow {
+  color: green
+}
+
+.add-score {
+
+}
