@@ -8,14 +8,12 @@ import { Subscription }   from 'rxjs/Subscription';
 })
 
 export class DashboardComponent {
-  component: string;
-  @Input() battletag: string;
+  battletag: string;
   subscription: Subscription;
   constructor(private battletagService: BattletagService) {
     this.subscription = battletagService.battletag$.subscribe(
       (tag: string) => { this.onUpdate(tag) }
     );
-    this.component = 'Dashboard'
   }
 
   onUpdate(tag: string) {
