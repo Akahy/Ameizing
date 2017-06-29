@@ -13,6 +13,8 @@ import { AppComponent }  from './app.component';
 import { TopMenuComponent }  from './components/top-menu/topMenu.component';
 import { DashboardComponent }  from './components/dashboard/dashboard.component';
 import { RecentGamesComponent } from './components/dashboard/recent-games/recentGames.component';
+import { GameChartComponent } from './components/dashboard/game-chart/gameChart.component';
+
 @NgModule({
   imports:      [ BrowserModule,
                   RouterModule.forRoot(routerConfig),
@@ -22,7 +24,8 @@ import { RecentGamesComponent } from './components/dashboard/recent-games/recent
   declarations: [ AppComponent,
                   TopMenuComponent,
                   DashboardComponent,
-                  RecentGamesComponent
+                  RecentGamesComponent,
+                  GameChartComponent
    ],
   bootstrap:    [ AppComponent ]
 })
