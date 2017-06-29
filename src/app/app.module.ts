@@ -2,6 +2,8 @@ import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 
+import { ChartsModule } from 'ng2-charts';
+
 //Top menu routes
 import { RouterModule, Routes } from '@angular/router';
 import { routerConfig } from './components/top-menu/topMenu.config';
@@ -14,7 +16,8 @@ import { RecentGamesComponent } from './components/dashboard/recent-games/recent
 @NgModule({
   imports:      [ BrowserModule,
                   RouterModule.forRoot(routerConfig),
-                  FormsModule
+                  FormsModule,
+                  ChartsModule
    ],
   declarations: [ AppComponent,
                   TopMenuComponent,

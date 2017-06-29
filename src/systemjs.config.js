@@ -25,7 +25,9 @@
 
       // other libraries
       'rxjs':                      'npm:rxjs',
-      'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js'
+      'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js',
+      'ng2-charts': 'node_modules/ng2-charts/ng2-charts',
+      'chart.js' : 'node_modules/chart.js/dist'
     },
     // packages tells the System loader how to load when no filename and/or no extension
     packages: {
@@ -38,6 +40,13 @@
         }
       },
       rxjs: {
+        defaultExtension: 'js'
+      },
+      "node_modules/ng2-charts": {
+        defaultExtension: 'js'
+      },
+      "chart.js": {
+        main: 'Chart.bundle.min.js',
         defaultExtension: 'js'
       }
     }
