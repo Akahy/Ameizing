@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
+    moduleId: module.id.replace("/dist/", "/"),
     selector: 'game-chart',
     templateUrl: './game-chart.html'
 })

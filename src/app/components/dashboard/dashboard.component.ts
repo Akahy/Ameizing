@@ -4,6 +4,7 @@ import { BattletagService } from './../../services/Battletag.service';
 import { Subscription }   from 'rxjs/Subscription';
 
 @Component({
+    moduleId: module.id.replace("/dist/", "/"),
     templateUrl: './dashboard.html'
 })
 

@@ -5,6 +5,7 @@ import { BattletagService } from './../../services/Battletag.service';
 import { battletags } from './../../resources/battletag.config';
 
 @Component({
+    moduleId: module.id.replace("/dist/", "/"),
     selector: 'top-menu',
     templateUrl: './top-menu.html',
 })
