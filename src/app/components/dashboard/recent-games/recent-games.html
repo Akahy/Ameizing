@@ -6,18 +6,18 @@
     <div class="column" *ngFor="let score of scoreDiff">
       <div class="box"
         [ngClass]="{'defeat': (score.diff<0),
-                    'draw': (score.diff==0),
-                    'victory': (score.diff>0)}">
-        <span class="icon is-medium" style="float:left; margin-top:10px">
-          <i class="fa"
-            [ngClass]="{'fa-arrow-down defeat_arrow': (score.diff<0),
-                        'fa-arrow-right draw_arrow': (score.diff==0),
-                        'fa-arrow-up victory_arrow': (score.diff>0)}"></i>
-        </span>
-        <h4 class="title is-4">{{score.diff}}</h4>
-        <h6 class="subtitle is-6">{{score.score}}</h6>
-      </div>
+        'draw': (score.diff==0),
+        'victory': (score.diff>0)}">
+      <span class="icon is-medium" style="float:left; margin-top:10px">
+        <i class="fa"
+          [ngClass]="{'fa-arrow-down defeat_arrow': (score.diff<0),
+          'fa-arrow-right draw_arrow': (score.diff==0),
+          'fa-arrow-up victory_arrow': (score.diff>0)}"></i>
+      </span>
+      <h4 class="title is-4">{{score.diff}}</h4>
+      <h6 class="subtitle is-6">{{score.score}}</h6>
     </div>
-
   </div>
+
+</div>
 </div>

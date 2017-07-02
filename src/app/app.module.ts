@@ -16,17 +16,19 @@ import { RecentGamesComponent } from './components/dashboard/recent-games/recent
 import { GameChartComponent } from './components/dashboard/game-chart/gameChart.component';
 
 @NgModule({
-  imports:      [ BrowserModule,
-                  RouterModule.forRoot(routerConfig),
-                  FormsModule,
-                  ChartsModule
-   ],
-  declarations: [ AppComponent,
-                  TopMenuComponent,
-                  DashboardComponent,
-                  RecentGamesComponent,
-                  GameChartComponent
-   ],
-  bootstrap:    [ AppComponent ]
+    imports:      [
+        BrowserModule,
+        RouterModule.forRoot(routerConfig),
+        FormsModule,
+        ChartsModule
+    ],
+    declarations: [
+        AppComponent,
+        TopMenuComponent,
+        DashboardComponent,
+        RecentGamesComponent,
+        GameChartComponent
+    ],
+    bootstrap:    [ AppComponent ]
 })
 export class AppModule { }

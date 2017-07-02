@@ -1,4 +1,4 @@
 export const battletags: string[] = [
-  "Akahiré#2136",
-  "JeanKevin#666"
+    "Akahiré#2136",
+    "JeanKevin#666"
 ];
