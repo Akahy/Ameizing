@@ -3,7 +3,7 @@
   <div class="tile is-vertical">
     <div class="tile is-parent">
       <div class="tile box is-child">
-        <recent-games></recent-games>
+        <recent-games *ngIf="games" [games]="games"></recent-games>
       </div>
     </div>
     <div class="tile" >

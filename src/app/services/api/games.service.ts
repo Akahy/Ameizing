@@ -14,7 +14,8 @@ export class GamesService {
 
   getFullInfoGames(player_id: string) {
     let url = this.gamesUrl + "?players_id=eq." + player_id +
-      "&select=*,maps%7Bid,name%7D,games_has_heroes%7Bheroes_id,%20games_id,%20heroes{id,name}}";
+      "&select=*,maps%7Bid,name%7D,games_has_heroes%7Bheroes_id,%20games_id,%20heroes{id,name}}"+
+      "order=game_id.desc";
     return this.http.get(url)
                     .map(response => response.json() || {})
                     .catch(this.handleError);

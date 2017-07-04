@@ -29,7 +29,7 @@ export class DashboardComponent implements OnInit {
     getGames() {
         this.gamesService.getFullInfoGames("92e4c6ee-b76f-410d-b657-fd640a1aa5ae")
         .subscribe(
-          games =>  { this.games = games; console.table(this.games)},
+          games =>  { this.games = games },
           error => console.log(error.toString())
         )
     }

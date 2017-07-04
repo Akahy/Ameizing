@@ -1,23 +1,18 @@
-<div>
-  <div class="columns">
-    <div class="column button add-score">
-      Add game
-    </div>
-    <div class="column" *ngFor="let score of scoreDiff">
-      <div class="box"
-        [ngClass]="{'defeat': (score.diff<0),
-        'draw': (score.diff==0),
-        'victory': (score.diff>0)}">
-      <span class="icon is-medium" style="float:left; margin-top:10px">
+<div class="columns">
+  <div class="column button add-score">
+    Add game
+  </div>
+  <div class="column" *ngFor="let game of lastGamesInfos">
+    <div class="box"
+      [ngClass]=game.outcome>
+      <span class="icon is-medium" style="float:left; margin-top:8px">
         <i class="fa"
-          [ngClass]="{'fa-arrow-down defeat_arrow': (score.diff<0),
-          'fa-arrow-right draw_arrow': (score.diff==0),
-          'fa-arrow-up victory_arrow': (score.diff>0)}"></i>
+          [ngClass]="{'fa-chevron-down defeat_arrow': (game.outcome==='Defeat'),
+          'fa-minus draw_arrow': (game.outcome==='Draw'),
+          'fa-chevron-up victory_arrow': (game.outcome==='Victory')}"></i>
       </span>
-      <h4 class="title is-4">{{score.diff}}</h4>
-      <h6 class="subtitle is-6">{{score.score}}</h6>
+      <h4 class="title is-4">{{game.variation}}</h4>
+      <h6 class="subtitle is-6">{{game.rating}}</h6>
     </div>
   </div>
-
-</div>
 </div>

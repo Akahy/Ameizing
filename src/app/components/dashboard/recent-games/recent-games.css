@@ -1,16 +1,16 @@
-.defeat {
+.Defeat {
   border-style: solid;
   border-color: red;
   text-align: right;
 }
 
-.draw {
+.Draw {
   border-style: solid;
   border-color: orange;
   text-align: right;
 }
 
-.victory {
+.Victory {
   border-style: solid;
   border-color: green;
   text-align: right;

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 
 @Component({
     moduleId: module.id.replace("/dist/", "/"),
@@ -7,27 +7,14 @@ import { Component } from '@angular/core';
     styleUrls: [ './recent-games.css']
 })
 
-export class RecentGamesComponent {
-    scoreDiff: any[] = [];
-    scores = [
-        2120, //Plus récent
-        2400,
-        2400,
-        2300,
-        2150,
-        2200,
-        2230,
-        2200,
-        2210,
-        2210 //Moins récent
-    ]
+export class RecentGamesComponent implements OnChanges {
+  @Input() games:any;
+  lastGamesInfos: {rating: number, variation: number, outcome: string }[];
 
-    constructor() {
-        for(let i=0; i+1<this.scores.length && i<5; i++) {
-            this.scoreDiff.push({
-                diff: this.scores[i]-this.scores[i+1],
-                score: this.scores[i],
-            });
-        }
+  ngOnChanges(changes: SimpleChanges) {
+    if(changes['games']) {
+      console.log(this.games);
+      this.lastGamesInfos = this.games.slice(0,4);
     }
+  }
 }
