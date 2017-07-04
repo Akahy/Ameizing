@@ -53,19 +53,4 @@ export class GameChartComponent implements OnChanges {
   //         result += "";
   //     }
   // }
-  //
-  // getMax() {
-  //     return Math.max.apply(null, this.scores) + 50;
-  // }
-  //
-  // getMin() {
-  //     let result = 3000;
-  //     for(let score of this.scores) {
-  //         if (score !== null && score < result) {
-  //             result = score;
-  //         }
-  //     }
-  //     return result - 50;
-  // }
-
 }
