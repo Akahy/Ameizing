@@ -9,7 +9,7 @@
     <div class="tile" >
       <div class="tile is-8 is-parent is-vertical">
         <div class="tile box is-child">
-          <game-chart></game-chart>
+          <game-chart *ngIf="games" [games]="games"></game-chart>
         </div>
         <div class="tile box is-child">
         </div>
