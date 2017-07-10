@@ -1,0 +1,37 @@
+<div class="tile is-ancestor is-vertical">
+  <div class="tile is-parent">
+    <div class="tile is-1 is-child center">Game</div>
+    <div class="tile is-1 is-child center">Rank</div>
+    <div class="tile is-2 is-child center">Map</div>
+    <div class="tile is-8 is-child">Heroes</div>
+  </div>
+  <div class="tile is-parent box">
+    <div class="tile is-1 is-child center">150</div>
+    <div class="tile is-1 is-child center">
+      <input class="input" type="text" placeholder="Ranking" maxlength="4"
+        [(ngModel)]="newRank" (change)="newRankChange()"
+        required>
+    </div>
+    <div class="tile is-2 is-child center">
+      <span class="select" style="max-width:85%;">
+        <select [(ngModel)]="selectedMap" >
+          <option *ngFor="let map of maps" value={{map}}>{{map.name}}</option>
+        </select>
+      </span>
+    </div>
+    <div class="tile is-7 is-child">Heroes</div>
+    <div class="tile is-1 is-child">
+      <button class="button is-primary" [disabled]="!isValid">Add</button>
+    </div>
+  </div>
+  <div class="tile is-parent box" *ngFor="let game of games">
+    <div class="tile is-1 is-child center">{{game.game_id}}</div>
+    <div class="tile is-1 is-child center">
+      {{game.rating}}
+    </div>
+    <div class="tile is-2 is-child center">
+      {{game.map}}
+    </div>
+    <div class="tile is-8 is-child">None</div>
+  </div>
+</div>
