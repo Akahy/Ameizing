@@ -12,6 +12,7 @@
           <game-chart *ngIf="games" [games]="games"></game-chart>
         </div>
         <div class="tile box is-child">
+          <games-details *ngIf="games" [games]="games"></games-details>
         </div>
       </div>
       <div class="tile box is-child">

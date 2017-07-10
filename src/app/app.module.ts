@@ -15,7 +15,7 @@ import { TopMenuComponent }  from './components/top-menu/topMenu.component';
 import { DashboardComponent }  from './components/dashboard/dashboard.component';
 import { RecentGamesComponent } from './components/dashboard/recent-games/recentGames.component';
 import { GameChartComponent } from './components/dashboard/game-chart/gameChart.component';
-
+import { GamesDetailsComponent } from './components/dashboard/games-details/gamesDetails.component';
 @NgModule({
     imports:      [
         BrowserModule,
@@ -30,7 +30,8 @@ import { GameChartComponent } from './components/dashboard/game-chart/gameChart.
         TopMenuComponent,
         DashboardComponent,
         RecentGamesComponent,
-        GameChartComponent
+        GameChartComponent,
+        GamesDetailsComponent
     ],
     bootstrap:    [ AppComponent ]
 })
