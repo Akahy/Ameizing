@@ -13,12 +13,12 @@ export class GameChartComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
       if(changes["games"]) {
-        let labels = this.games.map((game: any) => game.game_id));
-        let data = this.games.map((game:any) => game.rating ));
+        let labels = this.games.map((game: any) => game.game_id);
+        let data = this.games.map((game:any) => game.rating);
         this.lineChartLabels = labels.reverse();
         this.lineChartData = [{
           data: data.reverse(),
-          label: "Season "+this.games[0].seasons_id,
+          label: "Season "+this.games[0].season_id,
           lineTension: 0.2,
           spanGaps: false
         }];
