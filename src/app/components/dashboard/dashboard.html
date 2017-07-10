@@ -1,23 +1,20 @@
-
 <div class="tile is-ancestor">
-  <div class="tile is-vertical">
-    <div class="tile is-parent">
-      <div class="tile box is-child">
-        <recent-games *ngIf="games" [games]="games"></recent-games>
+  <div class="tile is-vertical is-parent">
+    <div class="tile is-child">
+      <recent-games class="box" *ngIf="games" [games]="games"></recent-games>
+    </div>
+    <div class="tile is-child" >
+      <div class="tile is-parent">
+        <div class="tile is-8 is-child  box">
+          <game-chart  *ngIf="games" [games]="games"></game-chart>
+        </div>
+        <div class="tile is-child box">
+          <div class="">Most played</div>
+        </div>
       </div>
     </div>
-    <div class="tile" >
-      <div class="tile is-8 is-parent is-vertical">
-        <div class="tile box is-child">
-          <game-chart *ngIf="games" [games]="games"></game-chart>
-        </div>
-        <div class="tile box is-child">
-          <games-details *ngIf="games" [games]="games"></games-details>
-        </div>
-      </div>
-      <div class="tile box is-child">
-        Most played
-      </div>
+    <div class="tile box is-child">
+      <games-details *ngIf="games" [games]="games"></games-details>
     </div>
   </div>
 </div>
