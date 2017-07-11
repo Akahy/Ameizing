@@ -18,7 +18,7 @@ export class GameChartComponent implements OnChanges {
         this.lineChartLabels = labels.reverse();
         this.lineChartData = [{
           data: data.reverse(),
-          label: "Season "+this.games[0].season_id,
+          label: "Season "+this.games[0].season.id,
           lineTension: 0.2,
           spanGaps: false
         }];
