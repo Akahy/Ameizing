@@ -16,6 +16,9 @@ import { DashboardComponent }  from './components/dashboard/dashboard.component'
 import { RecentGamesComponent } from './components/dashboard/recent-games/recentGames.component';
 import { GameChartComponent } from './components/dashboard/game-chart/gameChart.component';
 import { GamesDetailsComponent } from './components/dashboard/games-details/gamesDetails.component';
+import { HeroSelectionComponent } from './components/dashboard/games-details/hero-selection/heroSelection.component';
+
+
 @NgModule({
     imports:      [
         BrowserModule,
@@ -31,7 +34,8 @@ import { GamesDetailsComponent } from './components/dashboard/games-details/game
         DashboardComponent,
         RecentGamesComponent,
         GameChartComponent,
-        GamesDetailsComponent
+        GamesDetailsComponent,
+        HeroSelectionComponent
     ],
     bootstrap:    [ AppComponent ]
 })

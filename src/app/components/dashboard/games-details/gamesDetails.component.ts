@@ -1,6 +1,8 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, Output, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 
 import { DataService } from './../../../services/api/data.service';
+
+declare var tippy: any;
 
 @Component({
     moduleId: module.id.replace("/dist/", "/"),
@@ -18,20 +20,33 @@ export class GamesDetailsComponent implements OnChanges, OnInit {
   addGameId: number;
   isValid: boolean = true;
   newRank: string;
+  // heroesByType = [];
+  test = "Hello world";
 
   constructor (private dataService: DataService) {}
 
   ngOnInit() {
+    tippy("#tooltip", {
+      html: document.querySelector('#tooltip-template'),
+      trigger: 'click',
+      interactive: true,
+      position: 'top',
+      animation: 'scale',
+      duration: 500,
+      arrow: true,
+      theme: 'light'
+    });
+
     this.dataService.getMaps()
     .subscribe(
       maps =>  { this.maps = maps },
       error => console.log(error.toString())
     )
-    this.dataService.getHeroes()
-    .subscribe(
-      heroes =>  { this.heroes = heroes },
-      error => console.log(error.toString())
-    )
+    // this.dataService.getHeroes()
+    // .subscribe(
+    //   heroes =>  { this.heroes = heroes; this.initHeroes(); },
+    //   error => console.log(error.toString())
+    // )
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -50,4 +65,14 @@ export class GamesDetailsComponent implements OnChanges, OnInit {
       //TODO post game
     }
   }
+
+  // initHeroes() {
+  //   for(let hero of this.heroes) {
+  //     if (!this.heroesByType.hasOwnProperty(hero.type)) {
+  //       this.heroesByType[hero.type] = [];
+  //     }
+  //     this.heroesByType[hero.type].push(hero.name);
+  //   }
+  //   console.table(this.heroesByType);
+  // }
 }

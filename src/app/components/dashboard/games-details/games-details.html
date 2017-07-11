@@ -9,18 +9,34 @@
     <div class="tile is-1 is-child center">150</div>
     <div class="tile is-1 is-child center">
       <input class="input" type="text" placeholder="Rank" maxlength="4"
-        [(ngModel)]="newRank" #rank="ngModel"
-        [ngClass]="{'is-danger' : !isValid}"
-        required>
+      [(ngModel)]="newRank" #rank="ngModel"
+      [ngClass]="{'is-danger' : !isValid}"
+      required>
     </div>
     <div class="tile is-2 is-child center">
       <span class="select" style="max-width:85%;">
-        <select [(ngModel)]="selectedMap" >
+        <select [(ngModel)]="selectedMap">
           <option *ngFor="let map of maps" value={{map}}>{{map.name}}</option>
         </select>
       </span>
     </div>
-    <div class="tile is-7 is-child">Heroes</div>
+    <div class="tile is-7 is-child">
+      <p class="field">
+        <a class="button is-primary is-outlined" id="tooltip">
+          <span class="icon">
+            <i class="fa fa-plus"></i>
+          </span>
+        </a>
+      </p>
+
+      <hero-selection></hero-selection>
+      <div style="display: none;">
+        <div id="tooltip-template">
+          <hero-selection></hero-selection>
+        </div>
+      </div>
+
+    </div>
     <div class="tile is-1 is-child">
       <button class="button is-primary" [disabled]="!rank.valid" (click)="addGame()">Add</button>
     </div>
