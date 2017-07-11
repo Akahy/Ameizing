@@ -8,8 +8,9 @@
   <div class="tile is-parent box">
     <div class="tile is-1 is-child center">150</div>
     <div class="tile is-1 is-child center">
-      <input class="input" type="text" placeholder="Ranking" maxlength="4"
-        [(ngModel)]="newRank" (change)="newRankChange()"
+      <input class="input" type="text" placeholder="Rank" maxlength="4"
+        [(ngModel)]="newRank" #rank="ngModel"
+        [ngClass]="{'is-danger' : !isValid}"
         required>
     </div>
     <div class="tile is-2 is-child center">
@@ -21,7 +22,7 @@
     </div>
     <div class="tile is-7 is-child">Heroes</div>
     <div class="tile is-1 is-child">
-      <button class="button is-primary" [disabled]="!isValid">Add</button>
+      <button class="button is-primary" [disabled]="!rank.valid" (click)="addGame()">Add</button>
     </div>
   </div>
   <div class="tile is-parent box" *ngFor="let game of games">

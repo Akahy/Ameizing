@@ -16,7 +16,7 @@ export class GamesDetailsComponent implements OnChanges, OnInit {
   heroes: any = [];
   selectedMap: any;
   addGameId: number;
-  isValid: boolean = false;
+  isValid: boolean = true;
   newRank: string;
 
   constructor (private dataService: DataService) {}
@@ -24,7 +24,7 @@ export class GamesDetailsComponent implements OnChanges, OnInit {
   ngOnInit() {
     this.dataService.getMaps()
     .subscribe(
-      maps =>  { this.maps = maps; this.selectedMap = maps[0]; },
+      maps =>  { this.maps = maps },
       error => console.log(error.toString())
     )
     this.dataService.getHeroes()
@@ -41,11 +41,13 @@ export class GamesDetailsComponent implements OnChanges, OnInit {
     }
   }
 
-  newRankChange() { //FIXME
-    if (Number(this.newRank) !== NaN) {
-      this.isValid = Number(this.newRank) < 5000;
+  addGame() {
+    if (Number(this.newRank) === NaN || Number(this.newRank) > 5000) {
+      this.isValid = false;
     }
-    this.isValid = false;
-    console.log(Number(this.newRank));
+    else {
+      this.isValid = true;
+      //TODO post game
+    }
   }
 }
