@@ -1,17 +1,15 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject }    from 'rxjs/BehaviorSubject';
-
-import { battletags } from './../resources/battletag.config';
+import { Subject }    from 'rxjs/Subject';
 
 @Injectable()
 export class BattletagService {
     //Observable string source
-    private battletag = new BehaviorSubject<string>(battletags[0]);
+    private battletag = new Subject<{id: string, tag: string}>();
 
     //Observable string stream
     battletag$ = this.battletag.asObservable();
 
-    setBattletag(tag: string) {
-        this.battletag.next(tag);
+    setBattletag(battletag: {id: string, tag: string}) {
+        this.battletag.next(battletag);
     }
 }

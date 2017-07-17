@@ -6,7 +6,7 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class PlayersService {
-    private playersUrl: string = "https://owpi.b00.biz/players";
+    private playersUrl: string = "https://owi.b00.biz/players";
 
     constructor (private http: Http) {}
 

@@ -21,7 +21,7 @@
       <div class="nav-item">
         <span class="select">
           <select [(ngModel)]="selectedBattletag" (ngModelChange)="updateBattletag()">
-            <option *ngFor="let tag of battletags" value={{tag}}>{{tag}}</option>
+            <option *ngFor="let battletag of battletags" [ngValue]=battletag>{{battletag.tag}}</option>
           </select>
         </span>
       </div>

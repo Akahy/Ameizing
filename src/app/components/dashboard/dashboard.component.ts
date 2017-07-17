@@ -11,7 +11,7 @@ import { Subscription }   from 'rxjs/Subscription';
 })
 
 export class DashboardComponent implements OnInit {
-    battletag: string;
+    battletag: {id: string, tag: string};
     subscription: Subscription;
     games: any;
 
@@ -22,20 +22,21 @@ export class DashboardComponent implements OnInit {
 
     ngOnInit() {
       this.subscription = this.battletagService.battletag$.subscribe(
-          (tag: string) => { this.onUpdate(tag) }
+          (battletag: {id: string, tag: string}) => { this.onUpdate(battletag); }
       );
     }
 
     getGames() {
-        this.gamesService.getFullInfoGames("92e4c6ee-b76f-410d-b657-fd640a1aa5ae")
+        this.gamesService.getFullInfoGames(this.battletag.id)
         .subscribe(
           games =>  { this.games = games },
           error => console.log(error.toString())
         )
     }
 
-    onUpdate(tag: string) {
-        this.battletag = tag;
+    onUpdate(battletag: {id: string, tag: string}) {
+        console.log(battletag);
+        this.battletag = battletag;
         this.getGames();
     }
 
