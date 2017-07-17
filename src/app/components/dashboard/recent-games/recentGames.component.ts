@@ -12,7 +12,7 @@ export class RecentGamesComponent implements OnChanges {
   lastGamesInfos: {rating: number, variation: number, outcome: string }[];
 
   ngOnChanges(changes: SimpleChanges) {
-    if(changes['games']) {
+    if(changes['games'] && this.games.length > 0) {
       console.log(this.games);
       this.lastGamesInfos = this.games.slice(0,4);
     }

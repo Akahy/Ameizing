@@ -35,8 +35,8 @@ export class GamesDetailsComponent implements OnChanges, OnInit {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if(changes['games']) {
-      console.table(this.games);
+    if(changes['games'] && this.games.length > 0) {
+    //   console.table(this.games);
       this.addGameId = this.games[0] + 1;
     }
   }
