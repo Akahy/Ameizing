@@ -1,7 +1,7 @@
 import { Component, OnInit, NgModule } from '@angular/core';
 import { BrowserModule} from '@angular/platform-browser';
 
-import { BattletagService } from './../../services/Battletag.service';
+import { BattletagService } from './../../services/battletag.service';
 import { PlayersService} from './../../services/api/players.service';
 
 @Component({

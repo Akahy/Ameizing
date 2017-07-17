@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 
 import { GamesService } from './../../services/api/games.service';
-import { BattletagService } from './../../services/Battletag.service';
+import { BattletagService } from './../../services/battletag.service';
 import { Subscription }   from 'rxjs/Subscription';
 
 @Component({

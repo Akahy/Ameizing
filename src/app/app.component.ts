@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { BattletagService } from './services/Battletag.service';
+import { BattletagService } from './services/battletag.service';
 
 @Component({
     selector: 'my-app',
