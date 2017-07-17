@@ -7,6 +7,7 @@ import { Subscription }   from 'rxjs/Subscription';
 @Component({
     moduleId: module.id.replace("/dist/", "/"),
     templateUrl: './dashboard.html',
+    styleUrls: ['./dashboard.css'],
     providers: [ GamesService ]
 })
 

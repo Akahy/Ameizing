@@ -8,6 +8,7 @@ import { PlayersService} from './../../services/api/players.service';
     moduleId: module.id.replace("/dist/", "/"),
     selector: 'top-menu',
     templateUrl: './top-menu.html',
+    styleUrls:  [ './top-menu.css'],
     providers: [ PlayersService ]
 })
 
@@ -37,7 +38,6 @@ export class TopMenuComponent implements OnInit {
     }
 
     updateBattletag() {
-        console.log(this.selectedBattletag);
         this.battletagService.setBattletag(this.selectedBattletag);
     }
 }
