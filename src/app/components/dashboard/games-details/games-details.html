@@ -16,7 +16,7 @@
     <div class="tile is-2 is-child center">
       <span class="select" style="max-width:85%;">
         <select [(ngModel)]="selectedMap">
-          <option *ngFor="let map of maps" value={{map}}>{{map.name}}</option>
+          <option *ngFor="let map of maps" [ngValue]=map>{{map.name}}</option>
         </select>
       </span>
     </div>
@@ -29,12 +29,12 @@
         </a>
       </p>
 
-      <hero-selection></hero-selection>
+      <!-- <hero-selection></hero-selection>
       <div style="display: none;">
         <div id="tooltip-template">
           <hero-selection></hero-selection>
         </div>
-      </div>
+      </div> -->
 
     </div>
     <div class="tile is-1 is-child">
@@ -47,7 +47,7 @@
       {{game.rating}}
     </div>
     <div class="tile is-2 is-child center">
-      {{game.map}}
+      <div *ngIf="game.map">{{game.map.name}}</div>
     </div>
     <div class="tile is-8 is-child">None</div>
   </div>

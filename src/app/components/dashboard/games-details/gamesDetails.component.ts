@@ -30,16 +30,16 @@ export class GamesDetailsComponent implements OnChanges, OnInit {
         private gamesService: GamesService) {}
 
     ngOnInit() {
-        tippy("#tooltip", {
-            html: document.querySelector('#tooltip-template'),
-            trigger: 'click',
-            interactive: true,
-            position: 'top',
-            animation: 'scale',
-            duration: 500,
-            arrow: true,
-            theme: 'light'
-        });
+        // tippy("#tooltip", {
+        //     html: document.querySelector('#tooltip-template'),
+        //     trigger: 'click',
+        //     interactive: true,
+        //     position: 'top',
+        //     animation: 'scale',
+        //     duration: 500,
+        //     arrow: true,
+        //     theme: 'light'
+        // });
 
         this.dataService.getMaps()
         .subscribe(
@@ -56,7 +56,7 @@ export class GamesDetailsComponent implements OnChanges, OnInit {
     ngOnChanges(changes: SimpleChanges) {
         if(changes['games'] && this.games.length > 0) {
             //   console.table(this.games);
-            this.newGameNb = this.games[0] + 1;
+            this.newGameNb = this.games[0].game_id + 1;
         }
         else {
             this.newGameNb = 1;
@@ -73,7 +73,7 @@ export class GamesDetailsComponent implements OnChanges, OnInit {
                 this.newGameNb,
                 this.playerId,
                 Number(this.newRank),
-                this.selectedMap
+                this.selectedMap.id
             ).subscribe(
                 response => console.log(response),
                 error => console.error(error)
