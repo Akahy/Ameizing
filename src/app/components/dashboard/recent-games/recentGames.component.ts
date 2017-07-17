@@ -14,7 +14,7 @@ export class RecentGamesComponent implements OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     if(changes['games'] && this.games.length > 0) {
       console.log(this.games);
-      this.lastGamesInfos = this.games.slice(0,4);
+      this.lastGamesInfos = this.games.slice(0,8);
     }
   }
 }
