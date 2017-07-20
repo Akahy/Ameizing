@@ -1,0 +1,45 @@
+stages:
+  - build
+  - deploy
+
+variables:
+  TRAEFIK_FRONTEND: "ameizing.tesla-tuna.xyz"
+  TRAEFIK_PORT: "80"
+
+cache:
+  paths:
+    - dist
+
+build:
+  stage: build
+  image: node:alpine
+  script:
+    - npm install
+    - npm run build:prod
+  only:
+    - master
+
+deploy:
+  stage: deploy
+  image: docker:latest
+  environment:
+    name: prod
+  script:
+    - docker stop $CI_PROJECT_PATH_SLUG || true
+    - docker rm $CI_PROJECT_PATH_SLUG || true
+    - docker build
+      --file="config/nginx/Dockerfile"
+      -t $CI_PROJECT_PATH_SLUG
+      .
+    - docker run
+      -d
+      --label="traefik.enable=true"
+      --label="traefik.backend=$CI_PROJECT_PATH_SLUG"
+      --label="traefik.port=$TRAEFIK_PORT"
+      --label="traefik.frontend.rule=Host:$TRAEFIK_FRONTEND"
+      --label="traefik.docker.network=webgateway"
+      --network=webgateway
+      --name=$CI_PROJECT_PATH_SLUG
+      $CI_PROJECT_PATH_SLUG
+  only:
+    - master
