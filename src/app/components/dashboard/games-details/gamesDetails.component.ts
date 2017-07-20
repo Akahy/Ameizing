@@ -26,6 +26,7 @@ export class GamesDetailsComponent implements OnChanges, OnInit {
     //Form control
     isValid: boolean = true;
     isLoading: boolean = false;
+    webServiceError: boolean = false;
 
     // heroesByType = [];
 
@@ -76,6 +77,7 @@ export class GamesDetailsComponent implements OnChanges, OnInit {
             this.isValid = false;
         }
         else {
+            this.isLoading = true;
             this.isValid = true;
             let map = this.selectedMap === "None" ? null : this.selectedMap.id;
             this.gamesService.postGame(
@@ -88,7 +90,11 @@ export class GamesDetailsComponent implements OnChanges, OnInit {
                     this.newGameService.setNewGameTagId(this.playerId);
                     this.resetForm();
                 },
-                error => console.error(error)
+                error => {
+                    this.isLoading = false;
+                    this.webServiceError = true;
+                    console.error(error)
+                }
             )
 
         }
@@ -99,6 +105,7 @@ export class GamesDetailsComponent implements OnChanges, OnInit {
         this.newRank = "";
         this.isValid = true;
         this.isLoading = false;
+        this.webServiceError = false;
     }
 
     // initHeroes() {

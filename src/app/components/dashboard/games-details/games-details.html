@@ -39,7 +39,10 @@
 
     </div>
     <div class="tile is-1 is-child">
-      <button class="button is-primary" [disabled]="!rank.valid" (click)="addGame()">Add</button>
+      <button class="button is-primary"
+        [ngClass]="{'is-loading': isLoading, 'is-danger': webServiceError}"
+        [disabled]="!rank.valid"
+        (click)="addGame()">Add</button>
     </div>
   </div>
   <div class="tile is-parent box" *ngFor="let game of games">
