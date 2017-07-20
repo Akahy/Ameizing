@@ -15,16 +15,19 @@ declare var tippy: any;
 })
 
 export class GamesDetailsComponent implements OnChanges, OnInit {
+    static readonly DEFAULT_MAP = "None";
     @Input() games:any;
     @Input() playerId: string;
     maps: any = [];
     heroes: any = [];
-    selectedMap: any;
+    selectedMap: any = GamesDetailsComponent.DEFAULT_MAP;
     newGameNb: number;
-    isValid: boolean = true;
     newRank: string;
+    //Form control
+    isValid: boolean = true;
+    isLoading: boolean = false;
+
     // heroesByType = [];
-    test = "Hello world";
 
     constructor (
         private dataService: DataService,
@@ -58,12 +61,13 @@ export class GamesDetailsComponent implements OnChanges, OnInit {
 
     ngOnChanges(changes: SimpleChanges) {
         if(changes['games'] && this.games.length > 0) {
-            //   console.table(this.games);
-            console.log("Changes");
             this.newGameNb = this.games[0].game_id + 1;
         }
         else {
             this.newGameNb = 1;
+        }
+        if(changes['playerId']) {
+            this.resetForm();
         }
     }
 
@@ -73,17 +77,28 @@ export class GamesDetailsComponent implements OnChanges, OnInit {
         }
         else {
             this.isValid = true;
+            let map = this.selectedMap === "None" ? null : this.selectedMap.id;
             this.gamesService.postGame(
                 this.newGameNb,
                 this.playerId,
                 Number(this.newRank),
-                this.selectedMap.id
+                map
             ).subscribe(
-                response => this.newGameService.setNewGameTagId(this.playerId),
+                response => {
+                    this.newGameService.setNewGameTagId(this.playerId);
+                    this.resetForm();
+                },
                 error => console.error(error)
             )
 
         }
+    }
+
+    resetForm() {
+        this.selectedMap = GamesDetailsComponent.DEFAULT_MAP;
+        this.newRank = "";
+        this.isValid = true;
+        this.isLoading = false;
     }
 
     // initHeroes() {

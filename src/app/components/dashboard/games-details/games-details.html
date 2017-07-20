@@ -16,6 +16,7 @@
     <div class="tile is-2 is-child center">
       <span class="select" style="max-width:85%;">
         <select [(ngModel)]="selectedMap">
+          <option>None</option>
           <option *ngFor="let map of maps" [ngValue]=map>{{map.name}}</option>
         </select>
       </span>
