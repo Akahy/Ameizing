@@ -2,6 +2,7 @@ import { Component, Input, Output, OnChanges, OnInit, SimpleChanges } from '@ang
 
 import { DataService } from './../../../services/api/data.service';
 import { GamesService } from './../../../services/api/games.service';
+import { NewGameService } from './../../../services/newGame.service';
 
 declare var tippy: any;
 
@@ -27,7 +28,9 @@ export class GamesDetailsComponent implements OnChanges, OnInit {
 
     constructor (
         private dataService: DataService,
-        private gamesService: GamesService) {}
+        private gamesService: GamesService,
+        private newGameService: NewGameService
+    ) {}
 
     ngOnInit() {
         // tippy("#tooltip", {
@@ -56,6 +59,7 @@ export class GamesDetailsComponent implements OnChanges, OnInit {
     ngOnChanges(changes: SimpleChanges) {
         if(changes['games'] && this.games.length > 0) {
             //   console.table(this.games);
+            console.log("Changes");
             this.newGameNb = this.games[0].game_id + 1;
         }
         else {
@@ -75,7 +79,7 @@ export class GamesDetailsComponent implements OnChanges, OnInit {
                 Number(this.newRank),
                 this.selectedMap.id
             ).subscribe(
-                response => console.log(response),
+                response => this.newGameService.setNewGameTagId(this.playerId),
                 error => console.error(error)
             )
 

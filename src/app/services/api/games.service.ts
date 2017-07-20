@@ -19,6 +19,13 @@ export class GamesService {
             .catch(this.handleError);
     }
 
+    getLastGame(playerId: string) {
+        let url = this.gamesUrl + "/players/" + playerId +"/games?limit=1";
+        return this.http.get(url)
+            .map(response => response.json() || {})
+            .catch(this.handleError);
+    }
+
     postGame(gameId: number, playerId: string, rating: number, mapId: string ) {
         let game = {
             "game_id": gameId,
