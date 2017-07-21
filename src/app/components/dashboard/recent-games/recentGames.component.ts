@@ -8,13 +8,15 @@ import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 })
 
 export class RecentGamesComponent implements OnChanges {
-  @Input() games:any;
-  lastGamesInfos: {rating: number, variation: number, outcome: string }[];
+    @Input() games:any;
+    lastGamesInfos: {rating: number, variation: number, outcome: string }[];
 
-  ngOnChanges(changes: SimpleChanges) {
-    if(changes['games'] && this.games.length > 0) {
-      console.log(this.games);
-      this.lastGamesInfos = this.games.slice(0,8);
+    ngOnChanges(changes: SimpleChanges) {
+        if(changes['games'] && this.games.length > 0) {
+            this.lastGamesInfos = this.games.slice(0,8);
+        }
+        else {
+            this.lastGamesInfos = [];
+        }
     }
-  }
 }
