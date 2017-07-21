@@ -1,58 +1,75 @@
-<div class="tile is-ancestor is-vertical">
-  <div class="tile is-parent">
-    <div class="tile is-1 is-child center">Game</div>
-    <div class="tile is-1 is-child center">Rank</div>
-    <div class="tile is-2 is-child center">Map</div>
-    <div class="tile is-8 is-child">Heroes</div>
-  </div>
-  <div class="tile is-parent box">
-    <div class="tile is-1 is-child center">{{newGameNb}}</div>
-    <div class="tile is-1 is-child center">
-      <input class="input" type="text" placeholder="Rank" maxlength="4"
-      [(ngModel)]="newRank" #rank="ngModel"
-      [ngClass]="{'is-danger' : !isValid}"
-      required>
-    </div>
-    <div class="tile is-2 is-child center">
-      <span class="select" style="max-width:85%;">
-        <select [(ngModel)]="selectedMap">
-          <option>None</option>
-          <option *ngFor="let map of maps" [ngValue]=map>{{map.name}}</option>
-        </select>
-      </span>
-    </div>
-    <div class="tile is-7 is-child">
-      <p class="field">
-        <a class="button is-primary is-outlined" id="tooltip">
-          <span class="icon">
-            <i class="fa fa-plus"></i>
-          </span>
-        </a>
-      </p>
-
-      <!-- <hero-selection></hero-selection>
-      <div style="display: none;">
-        <div id="tooltip-template">
-          <hero-selection></hero-selection>
-        </div>
-      </div> -->
-
-    </div>
-    <div class="tile is-1 is-child">
-      <button class="button is-primary"
+<table class="table">
+  <thead>
+    <tr>
+      <th class="center" style="width: 5em">#</th>
+      <th class="center" style="width: 5em"></th>
+      <th class="center" style="width: 7em">Change</th>
+      <th class="center" style="width: 10em">Rating</th>
+      <th class="center" style="width: 14em">Map</th>
+      <th colspan="2">Heroes</th>
+    </tr>
+  </thead>
+  <tfoot>
+    <tr>
+      <th class="center">#</th>
+      <th class="center"></th>
+      <th class="center">Change</th>
+      <th class="center">Rating</th>
+      <th class="center">Map</th>
+      <th colspan="2">Heroes</th>
+    </tr>
+  </tfoot>
+  <tbody>
+    <tr id="row-form">
+      <th class="center">{{newGameNb}}</th>
+      <td></td>
+      <td>
+        <input class="input center" type="text" placeholder="0" disabled>
+      </td>
+      <td class="center">
+        <input class="input center" type="number" placeholder="Rating" maxlength="4" style="max-width:85%;"
+        [(ngModel)]="newRank" #rank="ngModel"
+        [ngClass]="{'is-danger' : !isValid}"
+        required>
+      </td>
+      <td class="center">
+        <span class="select" style="max-width:85%;">
+          <select [(ngModel)]="selectedMap">
+            <option>None</option>
+            <option *ngFor="let map of maps" [ngValue]=map>{{map.name}}</option>
+          </select>
+        </span>
+      </td>
+      <td>
+        <p class="field">
+          <a class="button is-primary is-outlined" id="tooltip" disabled>
+            <span class="icon">
+              <i class="fa fa-plus"></i>
+            </span>
+          </a>
+        </p>
+      </td>
+      <td style="text-align: right">
+        <button class="button is-primary"
         [ngClass]="{'is-loading': isLoading, 'is-danger': webServiceError}"
         [disabled]="!rank.valid"
         (click)="addGame()">Add</button>
-    </div>
-  </div>
-  <div class="tile is-parent box" *ngFor="let game of games">
-    <div class="tile is-1 is-child center">{{game.game_id}}</div>
-    <div class="tile is-1 is-child center">
-      {{game.rating}}
-    </div>
-    <div class="tile is-2 is-child center">
-      <div *ngIf="game.map">{{game.map.name}}</div>
-    </div>
-    <div class="tile is-8 is-child">None</div>
-  </div>
-</div>
+      </td>
+    </tr>
+    <tr *ngFor="let game of games">
+      <th class="center">{{game.game_id}}</th>
+      <td class="center">
+        <i class="fa fa-fw"
+        [ngClass]="{'fa-chevron-down Defeat': (game.outcome==='Defeat'),
+        'fa-minus Draw': (game.outcome==='Draw'),
+        'fa-chevron-up Victory': (game.outcome==='Victory')}">
+      </i></td>
+      <td class="center" [ngClass]=game.outcome> <span *ngIf="game.variation>0">+</span>{{game.variation}}</td>
+      <td class="center">{{game.rating}}</td>
+      <td class="center">
+        <div *ngIf="game.map">{{game.map.name}}</div>
+      </td>
+      <td colspan="2"> None </td>
+    </tr>
+  </tbody>
+</table>
