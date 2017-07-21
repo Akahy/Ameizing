@@ -44,7 +44,7 @@
         <p class="field">
           <a class="button is-primary is-outlined" id="tooltip" disabled>
             <span class="icon">
-              <i class="fa fa-plus"></i>
+              <i class="fa fa-fw fa-plus"></i>
             </span>
           </a>
         </p>
@@ -59,7 +59,7 @@
     <tr *ngFor="let game of games">
       <th class="center">{{game.game_id}}</th>
       <td class="center">
-        <i class="fa fa-fw"
+        <i class="fa fa-fw center"
         [ngClass]="{'fa-chevron-down Defeat': (game.outcome==='Defeat'),
         'fa-minus Draw': (game.outcome==='Draw'),
         'fa-chevron-up Victory': (game.outcome==='Victory')}">
