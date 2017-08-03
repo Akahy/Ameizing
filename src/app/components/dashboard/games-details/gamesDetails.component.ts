@@ -28,8 +28,6 @@ export class GamesDetailsComponent implements OnChanges, OnInit {
     isLoading: boolean = false;
     webServiceError: boolean = false;
 
-    // heroesByType = [];
-
     constructor (
         private dataService: DataService,
         private gamesService: GamesService,
@@ -43,7 +41,7 @@ export class GamesDetailsComponent implements OnChanges, OnInit {
             interactive: true,
             position: 'top',
             animation: 'scale',
-            duration: 500,
+            duration: 200,
             arrow: true,
             theme: 'light'
         });
@@ -53,11 +51,6 @@ export class GamesDetailsComponent implements OnChanges, OnInit {
             maps =>  { this.maps = maps },
             error => console.log(error.toString())
         )
-        // this.dataService.getHeroes()
-        // .subscribe(
-        //   heroes =>  { this.heroes = heroes; this.initHeroes(); },
-        //   error => console.log(error.toString())
-        // )
     }
 
     ngOnChanges(changes: SimpleChanges) {
@@ -107,14 +100,4 @@ export class GamesDetailsComponent implements OnChanges, OnInit {
         this.isLoading = false;
         this.webServiceError = false;
     }
-
-    // initHeroes() {
-    //   for(let hero of this.heroes) {
-    //     if (!this.heroesByType.hasOwnProperty(hero.type)) {
-    //       this.heroesByType[hero.type] = [];
-    //     }
-    //     this.heroesByType[hero.type].push(hero.name);
-    //   }
-    //   console.table(this.heroesByType);
-    // }
 }

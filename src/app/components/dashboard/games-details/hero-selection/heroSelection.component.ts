@@ -14,7 +14,7 @@ import { DataService } from './../../../../services/api/data.service';
 export class HeroSelectionComponent implements OnInit {
   heroes: any = [];
   heroesByType: any[] = [];
-  test = "hello world";
+  types: string[] = [];
 
   constructor (private dataService: DataService) {}
 
@@ -30,9 +30,12 @@ export class HeroSelectionComponent implements OnInit {
     for(let hero of this.heroes) {
       if (!this.heroesByType.hasOwnProperty(hero.type)) {
         this.heroesByType[hero.type] = [];
+        this.types.push(hero.type);
       }
-      this.heroesByType[hero.type].push(hero.name);
+      this.heroesByType[hero.type].push(
+          { 'name': hero.slug,
+            'selected': false
+        });
     }
-    console.table(this.heroesByType);
   }
 }

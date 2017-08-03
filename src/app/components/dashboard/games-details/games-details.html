@@ -42,12 +42,21 @@
       </td>
       <td>
         <p class="field">
-          <a class="button is-primary is-outlined" id="tooltip" disabled>
+          <a class="button is-primary is-outlined" id="tooltip">
             <span class="icon">
               <i class="fa fa-fw fa-plus"></i>
             </span>
           </a>
         </p>
+
+        <hero-selection></hero-selection>
+        <!-- Tooltip content -->
+        <div style="display: none;">
+          <div id="tooltip-template">
+            <hero-selection></hero-selection>
+          </div>
+        </div>
+
       </td>
       <td style="text-align: right">
         <button class="button is-primary"

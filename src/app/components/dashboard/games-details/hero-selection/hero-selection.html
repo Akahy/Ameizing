@@ -1,11 +1,8 @@
 <div>
-  <div>BONJOUR</div>
-  <div>{{test}}</div>
-  <div>{{heroesByType}}</div>
-  <ng-container *ngFor="let type of heroesByType; let i = index">
-    <ng-container *ngFor="let hero of type; let j = index">
-      <div>{{hero}}</div>
-    </ng-container>
-  </ng-container>
-  <script>console.error({{test}});</script>
+    <tr *ngFor="let type of types">
+        {{type}}
+        <td *ngFor="let hero of heroesByType[type]">
+            <hero name="{{hero.name}}" size="m" [selected]="hero.selected"></hero>
+        </td>
+    </tr>
 </div>
