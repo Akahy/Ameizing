@@ -4,7 +4,7 @@ import { DataService } from './../../../services/api/data.service';
 import { GamesService } from './../../../services/api/games.service';
 import { NewGameService } from './../../../services/newGame.service';
 
-declare var tippy: any;
+import * as tippy from 'tippy.js';
 
 @Component({
     moduleId: module.id.replace("/dist/", "/"),
@@ -37,16 +37,16 @@ export class GamesDetailsComponent implements OnChanges, OnInit {
     ) {}
 
     ngOnInit() {
-        // tippy("#tooltip", {
-        //     html: document.querySelector('#tooltip-template'),
-        //     trigger: 'click',
-        //     interactive: true,
-        //     position: 'top',
-        //     animation: 'scale',
-        //     duration: 500,
-        //     arrow: true,
-        //     theme: 'light'
-        // });
+        tippy("#tooltip", {
+            html: document.querySelector('#tooltip-template'),
+            trigger: 'click',
+            interactive: true,
+            position: 'top',
+            animation: 'scale',
+            duration: 500,
+            arrow: true,
+            theme: 'light'
+        });
 
         this.dataService.getMaps()
         .subscribe(
