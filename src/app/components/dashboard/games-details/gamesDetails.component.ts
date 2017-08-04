@@ -21,6 +21,7 @@ export class GamesDetailsComponent implements OnChanges, OnInit {
     maps: any = [];
     heroes: any = [];
     selectedMap: any = GamesDetailsComponent.DEFAULT_MAP;
+    selectedHeroes: {id: string, name: string}[] = [];
     newGameNb: number;
     newRank: string;
     //Form control
@@ -65,6 +66,16 @@ export class GamesDetailsComponent implements OnChanges, OnInit {
         }
     }
 
+    heroSelected(hero: {id: string, name: string}) {
+        let index = this.selectedHeroes.map(h => h.id).indexOf(hero.id);
+        if (index > -1) {
+            this.selectedHeroes.splice(index, 1);
+        }
+        else {
+            this.selectedHeroes.push(hero);
+        }
+    }
+
     addGame() {
         if (Number(this.newRank) === NaN || Number(this.newRank) > 5000) {
             this.isValid = false;
@@ -95,6 +106,7 @@ export class GamesDetailsComponent implements OnChanges, OnInit {
 
     resetForm() {
         this.selectedMap = GamesDetailsComponent.DEFAULT_MAP;
+        this.selectedHeroes = [];
         this.newRank = "";
         this.isValid = true;
         this.isLoading = false;

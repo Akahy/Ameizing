@@ -41,22 +41,16 @@
         </span>
       </td>
       <td>
-        <p class="field">
           <a class="button is-primary is-outlined" id="tooltip">
             <span class="icon">
               <i class="fa fa-fw fa-plus"></i>
             </span>
           </a>
-        </p>
-
-        <hero-selection></hero-selection>
-        <!-- Tooltip content -->
-        <div style="display: none;">
-          <div id="tooltip-template">
-            <hero-selection></hero-selection>
-          </div>
-        </div>
-
+          <ng-container>
+            <span *ngFor="let hero of selectedHeroes">
+              <hero name="{{hero.name}}" size="game-details"></hero>
+            </span>
+          </ng-container>
       </td>
       <td style="text-align: right">
         <button class="button is-primary"
@@ -82,3 +76,10 @@
     </tr>
   </tbody>
 </table>
+
+<!-- Tooltip content -->
+<div style="display: none;">
+  <div id="tooltip-template">
+    <hero-selection (heroClicked)="heroSelected($event)"></hero-selection>
+  </div>
+</div>
