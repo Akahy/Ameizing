@@ -50,4 +50,26 @@ export class GamesService {
     handleError(error : Response | any) {
         return error.message ? error.message : error.toString();
     }
+
+    postGameHeroes(gameUuid: string, heroesId: string[]) {
+        let info = [];
+        for(let hero of heroesId) {
+            info.push({
+                "game_id": gameUuid,
+                "hero_id": hero
+            });
+        }
+        let headers = new Headers({
+            "Content-Type": "application/json",
+            "Prefer": "return=representation",
+            "Accept": "application/json"
+        });
+        let options = new RequestOptions({ headers: headers });
+        return this.http.post(
+            this.gamesUrl+"/game_has_heros",
+            JSON.stringify(info),
+            options)
+            .map(response => response.json())
+            .catch(error => this.handleError(error));
+    }
 }

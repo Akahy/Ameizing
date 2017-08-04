@@ -91,6 +91,11 @@ export class GamesDetailsComponent implements OnChanges, OnInit {
                 map
             ).subscribe(
                 response => {
+                    this.gamesService.postGameHeroes(response[0].id, this.selectedHeroes.map(hero => hero.id) )
+                    .subscribe(
+                        response => console.log(response),
+                        error => console.error(error)
+                    )
                     this.newGameService.setNewGameTagId(this.playerId);
                     this.resetForm();
                 },
