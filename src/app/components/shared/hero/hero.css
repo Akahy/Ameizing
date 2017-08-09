@@ -4,6 +4,7 @@
   background-size: cover;
   background-repeat: no-repeat;
   border-radius: 10%;
+  vertical-align: middle;
 }
 
 .selectable {

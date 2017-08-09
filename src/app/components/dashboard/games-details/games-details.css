@@ -14,6 +14,18 @@
   color: green;
 }
 
+tr {
+  height: 54px;
+}
+
+td, th {
+  vertical-align: middle !important;
+}
+
+td .fa {
+  vertical-align: middle;
+}
+
 /* Remove arrow around number input */
 /* Safari & Chrome */
 input[type=number]::-webkit-inner-spin-button,

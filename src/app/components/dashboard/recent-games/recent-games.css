@@ -27,3 +27,14 @@
 .victory_arrow {
   color: green
 }
+
+.box {
+  position: relative;
+  padding-bottom: 0;
+}
+
+.icon {
+  position: absolute;
+  top: 2px;
+  left: 5px;
+}

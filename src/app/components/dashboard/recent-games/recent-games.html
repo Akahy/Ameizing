@@ -2,7 +2,7 @@
   <div class="column" *ngFor="let game of lastGamesInfos">
     <div class="box"
       [ngClass]=game.outcome>
-      <span class="icon is-medium" style="float:left; margin-top:8px">
+      <span class="icon is-medium">
         <i class="fa fa-fw"
           [ngClass]="{'fa-chevron-down defeat_arrow': (game.outcome==='Defeat'),
           'fa-minus draw_arrow': (game.outcome==='Draw'),
