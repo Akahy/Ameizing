@@ -1,9 +1,10 @@
 <div>
     <tr *ngFor="let type of types">
-        {{type}}
+        <td>{{type}}</td>
         <td *ngFor="let hero of heroesByType[type]; let i = index">
             <hero name="{{hero.name}}"
               size="m"
+              [isSelectable]="true"
               [selected]="hero.selected"
               (click)="selectHero(type, i)">
             </hero>

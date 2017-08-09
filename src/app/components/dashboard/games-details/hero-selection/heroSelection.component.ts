@@ -8,7 +8,7 @@ import { DataService } from './../../../../services/api/data.service';
     selector: 'hero-selection',
     templateUrl: './hero-selection.html',
     providers: [ DataService ],
-    // styleUrls: [ './hero-selection.css']
+    styleUrls: [ './hero-selection.css']
 })
 
 export class HeroSelectionComponent implements OnInit {
