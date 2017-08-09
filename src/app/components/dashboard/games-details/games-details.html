@@ -45,16 +45,16 @@
         </span>
       </td>
       <td>
-          <a class="button is-primary is-outlined" id="tooltip">
-            <span class="icon">
-              <i class="fa fa-fw fa-plus"></i>
-            </span>
-          </a>
-          <ng-container>
-            <span *ngFor="let hero of selectedHeroes">
-              <hero name="{{hero.name}}" size="game-details"></hero>
-            </span>
-          </ng-container>
+        <a class="button is-primary is-outlined" id="tooltip">
+          <span class="icon">
+            <i class="fa fa-fw fa-plus"></i>
+          </span>
+        </a>
+        <ng-container>
+          <span *ngFor="let hero of selectedHeroes">
+            <hero name="{{hero.name}}" size="game-details"></hero>
+          </span>
+        </ng-container>
       </td>
       <td style="text-align: right">
         <button class="button is-primary"
