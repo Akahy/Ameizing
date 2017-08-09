@@ -23,6 +23,6 @@ export class OverwatchService {
   }
 
   private formatBattletag(battletag: string) {
-
+      return battletag.replace("#", "-");
   }
 }
