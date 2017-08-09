@@ -21,6 +21,7 @@ export class GamesDetailsComponent implements OnChanges, OnInit {
     @Input() games:any;
     @Input() playerId: string;
     maps: any = [];
+    mapTypes: any = [];
     heroes: any = [];
     //Form input
     selectedMap: any = GamesDetailsComponent.DEFAULT_MAP;
@@ -55,8 +56,14 @@ export class GamesDetailsComponent implements OnChanges, OnInit {
 
         this.dataService.getMaps()
         .subscribe(
-            maps =>  { this.maps = maps },
-            error => console.log(error.toString())
+            maps =>  { this.maps = maps; console.table(maps) },
+            error => console.error(error.toString())
+        )
+
+        this.dataService.getMapTypes()
+        .subscribe(
+            types => this.mapTypes = types,
+            error => console.error(error.toString())
         )
     }
 
@@ -125,5 +132,9 @@ export class GamesDetailsComponent implements OnChanges, OnInit {
         this.isValid = true;
         this.isLoading = false;
         this.webServiceError = false;
+    }
+
+    getMaps(id: any) {
+        return this.maps.filter(map => map.game_mode.id==id);
     }
 }

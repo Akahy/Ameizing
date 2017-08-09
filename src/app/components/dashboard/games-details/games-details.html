@@ -35,8 +35,12 @@
       <td class="center">
         <span class="select" style="max-width:85%;">
           <select [(ngModel)]="selectedMap">
-            <option>None</option>
-            <option *ngFor="let map of maps" [ngValue]=map>{{map.name}}</option>
+            <optgroup><option>None</option></optgroup>
+            <optgroup *ngFor="let type of mapTypes" [label]="type.name">
+                <option [ngValue]="map" *ngFor="let map of getMaps(type.id)">
+                    {{map.name}}
+                </option>
+            </optgroup>
           </select>
         </span>
       </td>
