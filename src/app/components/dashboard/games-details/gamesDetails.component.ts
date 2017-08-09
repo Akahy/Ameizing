@@ -93,11 +93,12 @@ export class GamesDetailsComponent implements OnChanges, OnInit {
                 response => {
                     this.gamesService.postGameHeroes(response[0].id, this.selectedHeroes.map(hero => hero.id) )
                     .subscribe(
-                        response => console.log(response),
+                        response => {
+                            this.newGameService.setNewGameTagId(this.playerId);
+                            this.resetForm();
+                        },
                         error => console.error(error)
                     )
-                    this.newGameService.setNewGameTagId(this.playerId);
-                    this.resetForm();
                 },
                 error => {
                     this.isLoading = false;
@@ -105,7 +106,6 @@ export class GamesDetailsComponent implements OnChanges, OnInit {
                     console.error(error)
                 }
             )
-
         }
     }
 

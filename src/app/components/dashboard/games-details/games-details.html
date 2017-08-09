@@ -72,7 +72,9 @@
       <td class="center">
         <div *ngIf="game.map">{{game.map.name}}</div>
       </td>
-      <td colspan="2"> None </td>
+      <td colspan="2">
+          <hero *ngFor="let index of game.game_has_hero" [name]="index.hero.slug" size="game-details"></hero>
+      </td>
     </tr>
   </tbody>
 </table>
