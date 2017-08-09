@@ -1,4 +1,6 @@
-import { Component, Input, Output, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, Output, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+
+import { HeroSelectionComponent } from './hero-selection/heroSelection.component';
 
 import { DataService } from './../../../services/api/data.service';
 import { GamesService } from './../../../services/api/games.service';
@@ -20,6 +22,7 @@ export class GamesDetailsComponent implements OnChanges, OnInit {
     @Input() playerId: string;
     maps: any = [];
     heroes: any = [];
+    //Form input
     selectedMap: any = GamesDetailsComponent.DEFAULT_MAP;
     selectedHeroes: {id: string, name: string}[] = [];
     newGameNb: number;
@@ -28,6 +31,9 @@ export class GamesDetailsComponent implements OnChanges, OnInit {
     isValid: boolean = true;
     isLoading: boolean = false;
     webServiceError: boolean = false;
+
+    @ViewChild(HeroSelectionComponent)
+    private heroSelectionComponent: HeroSelectionComponent;
 
     constructor (
         private dataService: DataService,
@@ -111,6 +117,9 @@ export class GamesDetailsComponent implements OnChanges, OnInit {
 
     resetForm() {
         this.selectedMap = GamesDetailsComponent.DEFAULT_MAP;
+        if (this.selectedHeroes.length > 0) {
+            this.heroSelectionComponent.unselectAll();
+        }
         this.selectedHeroes = [];
         this.newRank = "";
         this.isValid = true;

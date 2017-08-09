@@ -47,4 +47,10 @@ export class HeroSelectionComponent implements OnInit {
         this.heroesByType[type][index].selected = !hero.selected;
         this.heroClicked.emit({id: hero.id, name: hero.name});
     }
+
+    unselectAll() {
+        for(let type of this.types) {
+            this.heroesByType[type].map(hero => hero.selected = false);
+        }
+    }
 }
