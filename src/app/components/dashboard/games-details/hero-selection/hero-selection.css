@@ -1,3 +1,12 @@
-hero {
-  margin: 0.25em;
+td {
+  padding: .25em;
+}
+
+.hero-type {
+  padding-right: 10px;
+}
+
+.hero-type img {
+  width: 30px;
+  vertical-align: middle;
 }
