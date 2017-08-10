@@ -56,7 +56,7 @@ export class GamesDetailsComponent implements OnChanges, OnInit {
 
         this.dataService.getMaps()
         .subscribe(
-            maps =>  { this.maps = maps; console.table(maps) },
+            maps =>  { this.maps = maps; },
             error => console.error(error.toString())
         )
 
