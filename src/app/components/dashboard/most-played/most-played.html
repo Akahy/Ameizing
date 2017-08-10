@@ -4,8 +4,11 @@
     <hero class="column is-1" [name]="playtime.hero"></hero>
     <div class="column is-11">
       <div id="container">
-        <progress class="progress is-primary is-medium" [value]= "playtime.time" [max]="playtimes[0].time"></progress>
-        <div class="time-container"><p class="time"><span>{{playtime.time}}</span>h</p></div>
+        <progress class="progress is-primary is-medium"
+          [ngClass]="playtime.hero"
+          [value]= "playtime.time"
+          [max]="playtimes[0].time"></progress>
+        <p class="time"><span>{{playtime.time}}</span>h</p>
       </div>
     </div>
   </div>
