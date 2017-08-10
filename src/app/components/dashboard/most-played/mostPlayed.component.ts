@@ -13,6 +13,7 @@ export class MostPlayedComponent implements OnChanges {
     @Input() tag: string;
     playtimes: any[] = [];
 
+    isLoading: boolean = true;
     webServiceError: boolean = false;
 
     constructor ( private overwatchService: OverwatchService ) {}
@@ -20,6 +21,7 @@ export class MostPlayedComponent implements OnChanges {
     ngOnChanges(changes: SimpleChanges) {
         if(changes['tag']) {
             this.playtimes = [];
+            this.isLoading = true;
             this.getPlaytime();
         }
     }
@@ -35,6 +37,7 @@ export class MostPlayedComponent implements OnChanges {
             })
             .sort((a,b) => b.time - a.time)
             .slice(0,6);
+        this.isLoading = false;
     }
 
     getPlaytime() {
