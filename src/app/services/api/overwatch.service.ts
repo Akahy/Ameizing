@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/throw'
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map'
 
@@ -15,11 +16,7 @@ export class OverwatchService {
     let url = this.url + this.formatBattletag(battletag) + "/heroes";
     return this.http.get(url)
                     .map(response => response.json() || {})
-                    .catch(this.handleError);
-  }
-
-  handleError(error : Response | any) {
-    return error.message ? error.message : error.toString();
+                    .catch(error => {return Observable.throw(error)});
   }
 
   private formatBattletag(battletag: string) {
