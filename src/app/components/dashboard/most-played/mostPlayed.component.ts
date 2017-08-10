@@ -25,7 +25,10 @@ export class MostPlayedComponent implements OnChanges {
     sortPlaytime(playtime: any) {
         this.playtimes = Object.keys(playtime)
             .map(key => {
-                return {hero: key, time: Math.round((playtime[key] + 0.00001) * 10) / 10};
+                return {
+                    hero: key==="soldier76" ? "soldier-76" : key,
+                    time: Math.round((playtime[key] + 0.00001) * 10) / 10
+                };
             })
             .sort((a,b) => b.time - a.time)
             .slice(0,6);
