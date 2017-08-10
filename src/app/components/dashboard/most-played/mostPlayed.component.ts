@@ -6,12 +6,14 @@ import { OverwatchService } from './../../../services/api/overwatch.service';
     selector: 'most-played',
     templateUrl: './most-played.html',
     providers: [ OverwatchService ],
-    styleUrls: [ './most-played.css']
+    styleUrls: [ './most-played.css', './progress-color.css']
 })
 
 export class MostPlayedComponent implements OnChanges {
     @Input() tag: string;
     playtimes: any[] = [];
+
+    webServiceError: boolean = false;
 
     constructor ( private overwatchService: OverwatchService ) {}
 
@@ -23,6 +25,7 @@ export class MostPlayedComponent implements OnChanges {
     }
 
     sortPlaytime(playtime: any) {
+        this.webServiceError = false;
         this.playtimes = Object.keys(playtime)
             .map(key => {
                 return {
@@ -38,7 +41,7 @@ export class MostPlayedComponent implements OnChanges {
         this.overwatchService.getHeroesInformations(this.tag)
             .subscribe(
                 res => this.sortPlaytime(res.eu.heroes.playtime.competitive),
-                error => console.error(error)
+                error => { console.error(error); this.webServiceError = true; }
             );
     }
 }
