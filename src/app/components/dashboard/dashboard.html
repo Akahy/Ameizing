@@ -9,7 +9,7 @@
           <game-chart  *ngIf="games" [games]="games"></game-chart>
         </div>
         <div class="tile is-child box">
-          <most-played></most-played>
+          <most-played *ngIf="battletag" [tag]="battletag.tag"></most-played>
         </div>
       </div>
     </div>

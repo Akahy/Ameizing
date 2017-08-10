@@ -1,1 +1,12 @@
-<div>Coucou</div>
+<div>
+  <p class="subtitle is-6">Most played heroes</p>
+  <div class="columns" *ngFor="let playtime of playtimes">
+    <hero class="column is-1" [name]="playtime.hero"></hero>
+    <div class="column is-11">
+      <div id="container">
+        <progress class="progress is-primary is-medium" [value]= "playtime.time" [max]="playtimes[0].time"></progress>
+        <div class="time-container"><p class="time"><span>{{playtime.time}}</span>h</p></div>
+      </div>
+    </div>
+  </div>
+</div>
