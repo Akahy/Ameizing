@@ -22,7 +22,8 @@
         "styles.css"
       ],
       "scripts": [
-          "../node_modules/tippy.js/dist/tippy.standalone.js"
+          "../node_modules/tippy.js/dist/tippy.standalone.js",
+          "../node_modules/selectize/dist/js/standalone/selectize.min.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {
