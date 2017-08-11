@@ -1,6 +1,8 @@
 <div>
     <tr *ngFor="let type of types">
-        <td>{{type}}</td>
+        <td class="hero-type">
+          <img src="assets/hero-types/{{type}}.svg" title="{{type}}">
+        </td>
         <td *ngFor="let hero of heroesByType[type]; let i = index">
             <hero name="{{hero.name}}"
               size="m"
