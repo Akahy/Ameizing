@@ -13,24 +13,28 @@ build:
     - npm install
     - npm run build:prod
 
-stop_dev_app:
+stop-dev-app:
   stage: deploy
   image: docker:latest
+  environment:
+    name: dev/$CI_COMMIT_REF_SLUG
+    action: stop
   script:
     - docker stop $CI_ENVIRONMENT_SLUG || true
     - docker rm $CI_ENVIRONMENT_SLUG || true
   when: manual
-  environment:
-    name: dev/$CI_COMMIT_REF_SLUG
-    action: stop
+  only:
+    - branches
+  except:
+    - master
 
 deploy-dev:
   stage: deploy
   image: docker:latest
   environment:
     name: dev/$CI_COMMIT_REF_SLUG
-    url: https://$CI_ENVIRONMENT_SLUG.dev.$TRAEFIK_FRONTEND
-    on_stop: stop_dev_app
+    url: https://$CI_ENVIRONMENT_SLUG.$TRAEFIK_FRONTEND
+    on_stop: stop-dev-app
   script:
     - docker stop $CI_ENVIRONMENT_SLUG || true
     - docker rm $CI_ENVIRONMENT_SLUG || true
@@ -41,9 +45,9 @@ deploy-dev:
     - docker run
       -d
       --label="traefik.enable=true"
-      --label="traefik.backend=$CI_PROJECT_PATH_SLUG"
+      --label="traefik.backend=$CI_ENVIRONMENT_SLUG"
       --label="traefik.port=$TRAEFIK_PORT"
-      --label="traefik.frontend.rule=Host:$CI_ENVIRONMENT_SLUG.dev.$TRAEFIK_FRONTEND"
+      --label="traefik.frontend.rule=Host:$CI_ENVIRONMENT_SLUG.$TRAEFIK_FRONTEND"
       --label="traefik.docker.network=webgateway"
       --network=webgateway
       --name=$CI_ENVIRONMENT_SLUG
