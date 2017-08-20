@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-    moduleId: module.id.replace("/dist/", "/"),
     selector: 'hero',
     templateUrl: './hero.html',
     styleUrls: [ './hero.css']

@@ -7,7 +7,6 @@ import * as ChartAnnotation from  'chartjs-plugin-annotation';
 import * as rankColor from './rankColor.json';
 
 @Component({
-    moduleId: module.id.replace("/dist/", "/"),
     selector: 'game-chart',
     templateUrl: './game-chart.html',
     providers: [DataService]

@@ -9,7 +9,6 @@ import { NewGameService } from './../../../services/newGame.service';
 import * as tippy from 'tippy.js';
 
 @Component({
-    moduleId: module.id.replace("/dist/", "/"),
     selector: 'games-details',
     templateUrl: './games-details.html',
     providers: [ DataService, GamesService ],

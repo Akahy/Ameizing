@@ -1,7 +1,6 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 
 @Component({
-    moduleId: module.id.replace("/dist/", "/"),
     selector: 'recent-games',
     templateUrl: './recent-games.html',
     styleUrls: [ './recent-games.css']
