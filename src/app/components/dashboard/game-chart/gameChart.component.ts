@@ -17,6 +17,8 @@ export class GameChartComponent implements OnChanges, OnInit {
     ranks: {id: string, name: string, min: number, max: number}[] = [];
     public lineChartData: Array<any> = [];
     public lineChartLabels:Array<any> = [];
+    public lineChartOptions:any = {};
+
 
     public constructor(
         private dataService: DataService
@@ -30,20 +32,15 @@ export class GameChartComponent implements OnChanges, OnInit {
     }
 
     ngOnChanges(changes: SimpleChanges) {
-        if(this.ranks.length <= 0) {
-            this.dataService.getRanks().subscribe(
-                ranks => this.formatRanks(ranks),
-                error => console.error(error)
-            )
-        }
         if(changes["games"] && this.games.length > 0) {
             let labels = this.games.map((game: any) => game.game_id);
             let data = this.games.map((game:any) => game.rating);
 
-            if (this.ranks.length <= 0) {
-                setTimeout( () => this.addRankStep(data), 500);
-            } else {
-                this.addRankStep(data)
+            if(this.ranks.length <= 0) {
+                this.dataService.getRanks().subscribe(
+                    ranks => {this.formatRanks(ranks); this.addRankStep(data)},
+                    error => console.error(error)
+                )
             }
 
             data = data.reverse();
@@ -73,16 +70,6 @@ export class GameChartComponent implements OnChanges, OnInit {
             }];
        }
     }
-
-    public lineChartOptions:any = {
-        // tooltips: {
-        //     callbacks: {
-        //         label: this.tooltipLabel
-        //     }
-        // },
-
-        responsive: true
-    };
 
     public lineChartColors:Array<any> = [
         {
