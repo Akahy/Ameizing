@@ -34,7 +34,7 @@ export class TopMenuComponent implements OnInit {
         // console.table(players);
         this.battletags = players;
         let battletag = this.localStorageService.get('battletag');
-        let battletagIndex = this.battletags.findIndex(b => b.id === battletag.id);
+        let battletagIndex = battletag ? this.battletags.findIndex(b => b.id === battletag.id) : -1;
         if (battletagIndex > -1) {
             this.selectedBattletag = this.battletags[battletagIndex];
         }
