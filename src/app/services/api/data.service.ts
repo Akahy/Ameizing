@@ -7,23 +7,28 @@ import 'rxjs/add/operator/map'
 
 @Injectable()
 export class DataService {
-    private gamesUrl: string = "https://owi.b00.biz";
+    private apiUrl: string = "https://owi.b00.biz";
 
     constructor (private http: Http) {}
 
     getHeroes() {
-        let url = this.gamesUrl + "/heroes";
+        let url = this.apiUrl + "/heroes";
         return this.get(url);
     }
 
     getMaps() {
-        let url = this.gamesUrl + "/maps";
+        let url = this.apiUrl + "/maps";
         return this.get(url);
     }
 
 
     getMapTypes() {
-        let url = this.gamesUrl + "/game_modes";
+        let url = this.apiUrl + "/game_modes";
+        return this.get(url);
+    }
+
+    getRanks() {
+        let url = this.apiUrl + "/ranks";
         return this.get(url);
     }
 
