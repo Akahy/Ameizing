@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
+
 import { BattletagService } from './services/battletag.service';
+import { LocalStorageService } from './services/localStorage.service';
 import { NewGameService } from './services/newGame.service';
 
 @Component({
@@ -7,6 +9,7 @@ import { NewGameService } from './services/newGame.service';
     template: `<top-menu></top-menu>`,
     providers: [
         BattletagService,
+        LocalStorageService,
         NewGameService
     ]
 })

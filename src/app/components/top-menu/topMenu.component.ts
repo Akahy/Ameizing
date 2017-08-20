@@ -2,6 +2,7 @@ import { Component, OnInit, NgModule } from '@angular/core';
 import { BrowserModule} from '@angular/platform-browser';
 
 import { BattletagService } from './../../services/battletag.service';
+import { LocalStorageService } from './../../services/localStorage.service';
 import { PlayersService} from './../../services/api/players.service';
 
 @Component({
@@ -18,6 +19,7 @@ export class TopMenuComponent implements OnInit {
 
     constructor(
         private battletagService: BattletagService,
+        private localStorageService : LocalStorageService,
         private playersService: PlayersService ) {
     }
 
@@ -29,15 +31,21 @@ export class TopMenuComponent implements OnInit {
     }
 
     initBattletag(players: {id: string, tag: string}[]) {
-        console.table(players);
+        // console.table(players);
         this.battletags = players;
-        if (players.length > 0) {
-            this.selectedBattletag = players[0];
+        let battletag = this.localStorageService.get('battletag');
+        let battletagIndex = this.battletags.findIndex(b => b.id === battletag.id);
+        if (battletagIndex > -1) {
+            this.selectedBattletag = this.battletags[battletagIndex];
+        }
+        else if (this.battletags.length > 0) {
+            this.selectedBattletag = this.battletags[0];
         }
         this.updateBattletag();
     }
 
     updateBattletag() {
+        this.localStorageService.save('battletag', this.selectedBattletag);
         this.battletagService.setBattletag(this.selectedBattletag);
     }
 }
