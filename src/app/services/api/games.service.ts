@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import { Headers, Http, Response, RequestOptions } from '@angular/http';
 
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/map'
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class GamesService {
@@ -48,7 +49,7 @@ export class GamesService {
     }
 
     handleError(error : Response | any) {
-        return error.message ? error.message : error.toString();
+        return Observable.throw(error);
     }
 
     postGameHeroes(gameUuid: string, heroesId: string[]) {

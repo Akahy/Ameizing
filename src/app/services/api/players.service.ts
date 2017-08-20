@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
@@ -13,10 +15,6 @@ export class PlayersService {
     getPlayers() {
         return this.http.get(this.playersUrl)
                         .map(response => response.json() || {})
-                        .catch(this.handleError);
-    }
-
-    private handleError(error: Response | any) {
-        return error.message ? error.message : error.toString();
+                        .catch(error => Observable.throw(error));
     }
 }
