@@ -1,9 +1,10 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 
 import { DataService } from './../../../services/api/data.service';
 
-import * as ChartAnnotation from  'chartjs-plugin-annotation';
 import * as _ from "lodash";
+import * as ChartAnnotation from  'chartjs-plugin-annotation';
+import * as rankColor from './rankColor.json';
 
 @Component({
     moduleId: module.id.replace("/dist/", "/"),
@@ -12,23 +13,17 @@ import * as _ from "lodash";
     providers: [DataService]
 })
 
-export class GameChartComponent implements OnChanges, OnInit {
+export class GameChartComponent implements OnChanges {
     @Input() games: any;
     ranks: {id: string, name: string, min: number, max: number}[] = [];
     public lineChartData: Array<any> = [];
     public lineChartLabels:Array<any> = [];
     public lineChartOptions:any = {};
 
-
     public constructor(
         private dataService: DataService
     ) {
     	let loadPluginJS = ChartAnnotation;
-    }
-
-
-    ngOnInit() {
-
     }
 
     ngOnChanges(changes: SimpleChanges) {
@@ -42,6 +37,9 @@ export class GameChartComponent implements OnChanges, OnInit {
                     error => console.error(error)
                 )
             }
+            else {
+                this.addRankStep(data);
+            }
 
             data = data.reverse();
             setTimeout(() => this.lineChartLabels = labels.reverse());
@@ -54,16 +52,18 @@ export class GameChartComponent implements OnChanges, OnInit {
             this.lineChartOptions.scales = {};
         }
         else {
-            let scales = {
-                yAxes: [{
-                  ticks: {
-                    max: 3400,
-                    min: 1600,
-                  }
-                }]
+            this.lineChartOptions = {
+                responsive: true,
+                scales: {
+                    yAxes: [{
+                      ticks: {
+                        max: 3400,
+                        min: 1600,
+                      }
+                    }]
+                }
             };
-            this.lineChartOptions.scales = scales; //FIXME : only working on 1st load ...
-            this.lineChartLabels = [];
+            setTimeout(()=> this.lineChartLabels = []);
             this.lineChartData = [{
                 data: [],
                 label: "No game for the current season"
@@ -95,7 +95,7 @@ export class GameChartComponent implements OnChanges, OnInit {
                     scaleID: 'y-axis-0',
                     id: rank.name,
                     value: rank.min,
-                    borderColor: "blue",
+                    borderColor: rankColor[rank.name],
                     borderWidth: 1
                 })
             }
