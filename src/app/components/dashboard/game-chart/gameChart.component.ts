@@ -39,6 +39,13 @@ export class GameChartComponent implements OnChanges, OnInit {
         if(changes["games"] && this.games.length > 0) {
             let labels = this.games.map((game: any) => game.game_id);
             let data = this.games.map((game:any) => game.rating);
+
+            if (this.ranks.length <= 0) {
+                setTimeout( () => this.addRankStep(data), 500);
+            } else {
+                this.addRankStep(data)
+            }
+
             data = data.reverse();
             setTimeout(() => this.lineChartLabels = labels.reverse());
             this.lineChartData = [{
@@ -48,7 +55,6 @@ export class GameChartComponent implements OnChanges, OnInit {
                 spanGaps: false
             }];
             this.lineChartOptions.scales = {};
-            setTimeout( () => this.addRankStep(data), 500);
         }
         else {
             let scales = {
@@ -86,25 +92,19 @@ export class GameChartComponent implements OnChanges, OnInit {
             pointBorderColor: '#fff',
             pointHoverBackgroundColor: '#fff',
             pointHoverBorderColor: '#6d27bc'
-        },
-        {
-            backgroundColor: 'rgba(0,0,0,0)',
-            borderColor: '#564845',
-            pointRadius: 0
         }
     ]
 
     addRankStep(data : number[]) {
         let max = _.max(data) + 30;
         let min = _.min(data) - 30;
-        console.table(this.ranks);
         let annotations = [];
         for(let rank of this.ranks) {
             if (rank.min > min && rank.min < max) {
-                console.log("Hello I'm around "+rank.name);
                 annotations.push({
                     type: "line",
                     mode: "horizontal",
+                    drawTime: 'afterDraw',
                     scaleID: 'y-axis-0',
                     id: rank.name,
                     value: rank.min,
@@ -113,8 +113,6 @@ export class GameChartComponent implements OnChanges, OnInit {
                 })
             }
         }
-
-        console.table(annotations);
 
         this.lineChartOptions = {
             annotation: {
