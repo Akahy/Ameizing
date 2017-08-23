@@ -33,7 +33,7 @@ deploy-dev:
   image: docker:latest
   environment:
     name: dev/$CI_COMMIT_REF_SLUG
-    url: https://$CI_ENVIRONMENT_SLUG.$TRAEFIK_FRONTEND
+    url: https://$CI_ENVIRONMENT_SLUG.$TRAEFIK_DEV_FRONTEND
     on_stop: stop-dev-app
   script:
     - docker stop $CI_ENVIRONMENT_SLUG || true
@@ -47,7 +47,7 @@ deploy-dev:
       --label="traefik.enable=true"
       --label="traefik.backend=$CI_ENVIRONMENT_SLUG"
       --label="traefik.port=$TRAEFIK_PORT"
-      --label="traefik.frontend.rule=Host:$CI_ENVIRONMENT_SLUG.$TRAEFIK_FRONTEND"
+      --label="traefik.frontend.rule=Host:$CI_ENVIRONMENT_SLUG.$TRAEFIK_DEV_FRONTEND"
       --label="traefik.docker.network=webgateway"
       --network=webgateway
       --name=$CI_ENVIRONMENT_SLUG
