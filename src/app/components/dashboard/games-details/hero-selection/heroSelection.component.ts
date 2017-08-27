@@ -4,7 +4,6 @@ import { DataService } from './../../../../services/api/data.service';
 
 
 @Component({
-    moduleId: module.id.replace("/dist/", "/"),
     selector: 'hero-selection',
     templateUrl: './hero-selection.html',
     providers: [ DataService ],

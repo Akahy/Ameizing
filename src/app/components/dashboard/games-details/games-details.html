@@ -20,49 +20,52 @@
     </tr>
   </tfoot>
   <tbody>
-    <tr id="row-form">
-      <th class="center">{{newGameNb}}</th>
-      <td></td>
-      <td>
-        <input class="input center" type="text" placeholder="0" disabled>
-      </td>
-      <td class="center">
-        <input class="input center" type="number" placeholder="Rating" maxlength="4" style="max-width:85%;"
-        [(ngModel)]="newRank" #rank="ngModel"
-        [ngClass]="{'is-danger' : !isValid}"
-        required>
-      </td>
-      <td class="center">
-        <span class="select" style="max-width:85%;">
-          <select [(ngModel)]="selectedMap">
-            <optgroup><option>None</option></optgroup>
-            <optgroup *ngFor="let type of mapTypes" [label]="type.name">
-                <option [ngValue]="map" *ngFor="let map of getMaps(type.id)">
-                    {{map.name}}
-                </option>
-            </optgroup>
-          </select>
-        </span>
-      </td>
-      <td>
-        <a class="button is-primary is-outlined" id="tooltip">
-          <span class="icon">
-            <i class="fa fa-fw fa-plus"></i>
+    <tr><td colspan="7"><form>
+      <table>
+        <th class="center" style="width: 5em">{{newGameNb}}</th>
+        <td style="width: 5em"></td>
+        <td style="width: 7em">
+          <input class="input center" type="text" placeholder="0" disabled>
+        </td>
+        <td class="center" style="width: 10em">
+          <input class="input center" type="number"
+          name="nRank" placeholder="Rating" style="max-width:85%;"
+          [(ngModel)]="newRank" #rank="ngModel"
+          required>
+        </td>
+        <td class="center" style="width: 14em">
+          <span class="select" style="max-width:85%;">
+            <select [(ngModel)]="selectedMap" name="slctMap">
+              <optgroup><option>None</option></optgroup>
+              <optgroup *ngFor="let type of mapTypes" [label]="type.name">
+                  <option [ngValue]="map" *ngFor="let map of getMaps(type.id)">
+                      {{map.name}}
+                  </option>
+              </optgroup>
+            </select>
           </span>
-        </a>
-        <ng-container>
-          <span *ngFor="let hero of selectedHeroes">
-            <hero name="{{hero.name}}" size="game-details"></hero>
-          </span>
-        </ng-container>
-      </td>
-      <td style="text-align: right">
-        <button class="button is-primary"
-        [ngClass]="{'is-loading': isLoading, 'is-danger': webServiceError}"
-        [disabled]="!rank.valid"
-        (click)="addGame()">Add</button>
-      </td>
-    </tr>
+        </td>
+        <td>
+          <a class="button is-primary is-outlined" id="tooltip">
+            <span class="icon">
+              <i class="fa fa-fw fa-plus"></i>
+            </span>
+          </a>
+          <ng-container>
+            <span *ngFor="let hero of selectedHeroes">
+              <hero name="{{hero.name}}" size="game-details"></hero>
+            </span>
+          </ng-container>
+        </td>
+        <td style="text-align: right">
+          <button class="button is-primary"
+          type="submit"
+          [ngClass]="{'is-loading': isLoading, 'is-danger': webServiceError}"
+          [disabled]="!rank.valid || !inRange()"
+          (click)="addGame()">Add</button>
+        </td>
+      </table>
+    </form></td></tr>
     <tr *ngFor="let game of games">
       <th class="center">{{game.game_id}}</th>
       <td class="center">

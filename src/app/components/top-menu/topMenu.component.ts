@@ -6,7 +6,6 @@ import { LocalStorageService } from './../../services/localStorage.service';
 import { PlayersService} from './../../services/api/players.service';
 
 @Component({
-    moduleId: module.id.replace("/dist/", "/"),
     selector: 'top-menu',
     templateUrl: './top-menu.html',
     styleUrls:  [ './top-menu.css'],

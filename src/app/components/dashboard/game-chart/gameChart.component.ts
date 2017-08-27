@@ -7,9 +7,9 @@ import * as ChartAnnotation from  'chartjs-plugin-annotation';
 import * as rankColor from './rankColor.json';
 
 @Component({
-    moduleId: module.id.replace("/dist/", "/"),
     selector: 'game-chart',
     templateUrl: './game-chart.html',
+    styleUrls: ['./game-chart.css'],
     providers: [DataService]
 })
 
@@ -54,6 +54,7 @@ export class GameChartComponent implements OnChanges {
         else {
             this.lineChartOptions = {
                 responsive: true,
+                maintainAspectRatio: false,
                 scales: {
                     yAxes: [{
                       ticks: {
@@ -105,6 +106,7 @@ export class GameChartComponent implements OnChanges {
             annotation: {
                 annotations: annotations
             },
+            maintainAspectRatio: false,
             responsive: true
         }
     }

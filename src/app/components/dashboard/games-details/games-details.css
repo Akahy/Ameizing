@@ -14,6 +14,16 @@
   color: green;
 }
 
+/* Form style - remove table design */
+.table table td, .table table th {
+  border-bottom-style: none;
+}
+
+.table td{
+  padding: 0;
+}
+
+/*Table style */
 tr {
   height: 54px;
 }
