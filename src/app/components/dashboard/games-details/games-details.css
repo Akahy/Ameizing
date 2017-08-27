@@ -14,19 +14,16 @@
   color: green;
 }
 
-#form-table table, caption, tbody, tfoot, thead, tr, th, td {
-      margin: 0;
-      padding: 0;
-      border: 0;
-      outline: 0;
-      font-size: 100%;
-      vertical-align: baseline;
-      background: transparent;
-      border-spacing: 0;
-border-collapse: collapse;
-  }
+/* Form style - remove table design */
+.table table td, .table table th {
+  border-bottom-style: none;
+}
 
+.table td{
+  padding: 0;
+}
 
+/*Table style */
 tr {
   height: 54px;
 }
