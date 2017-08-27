@@ -54,6 +54,7 @@ export class GameChartComponent implements OnChanges {
         else {
             this.lineChartOptions = {
                 responsive: true,
+                maintainAspectRatio: false,
                 scales: {
                     yAxes: [{
                       ticks: {
@@ -105,6 +106,7 @@ export class GameChartComponent implements OnChanges {
             annotation: {
                 annotations: annotations
             },
+            maintainAspectRatio: false,
             responsive: true
         }
     }
