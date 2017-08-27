@@ -14,6 +14,19 @@
   color: green;
 }
 
+#form-table table, caption, tbody, tfoot, thead, tr, th, td {
+      margin: 0;
+      padding: 0;
+      border: 0;
+      outline: 0;
+      font-size: 100%;
+      vertical-align: baseline;
+      background: transparent;
+      border-spacing: 0;
+border-collapse: collapse;
+  }
+
+
 tr {
   height: 54px;
 }

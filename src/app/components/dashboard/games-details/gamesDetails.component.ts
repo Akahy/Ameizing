@@ -26,9 +26,8 @@ export class GamesDetailsComponent implements OnChanges, OnInit {
     selectedMap: any = GamesDetailsComponent.DEFAULT_MAP;
     selectedHeroes: {id: string, name: string}[] = [];
     newGameNb: number;
-    newRank: string;
+    newRank: number;
     //Form control
-    isValid: boolean = true;
     isLoading: boolean = false;
     webServiceError: boolean = false;
 
@@ -89,36 +88,35 @@ export class GamesDetailsComponent implements OnChanges, OnInit {
     }
 
     addGame() {
-        if (Number(this.newRank) === NaN || Number(this.newRank) > 5000) {
-            this.isValid = false;
-        }
-        else {
-            this.isLoading = true;
-            this.isValid = true;
-            let map = this.selectedMap === "None" ? null : this.selectedMap.id;
-            this.gamesService.postGame(
-                this.newGameNb,
-                this.playerId,
-                Number(this.newRank),
-                map
-            ).subscribe(
-                response => {
-                    this.gamesService.postGameHeroes(response[0].id, this.selectedHeroes.map(hero => hero.id) )
-                    .subscribe(
-                        response => {
-                            this.newGameService.setNewGameTagId(this.playerId);
-                            this.resetForm();
-                        },
-                        error => console.error(error)
-                    )
-                },
-                error => {
-                    this.isLoading = false;
-                    this.webServiceError = true;
-                    console.error(error)
-                }
-            )
-        }
+        console.log("pourt");
+        this.isLoading = true;
+        let map = this.selectedMap === "None" ? null : this.selectedMap.id;
+        this.gamesService.postGame(
+            this.newGameNb,
+            this.playerId,
+            this.newRank,
+            map
+        ).subscribe(
+            response => {
+                this.gamesService.postGameHeroes(response[0].id, this.selectedHeroes.map(hero => hero.id) )
+                .subscribe(
+                    response => {
+                        this.newGameService.setNewGameTagId(this.playerId);
+                        this.resetForm();
+                    },
+                    error => console.error(error)
+                )
+            },
+            error => {
+                this.isLoading = false;
+                this.webServiceError = true;
+                console.error(error)
+            }
+        )
+    }
+
+    inRange() {
+        return (this.newRank > 0 && this.newRank <= 5000)
     }
 
     resetForm() {
@@ -127,8 +125,7 @@ export class GamesDetailsComponent implements OnChanges, OnInit {
             this.heroSelectionComponent.unselectAll();
         }
         this.selectedHeroes = [];
-        this.newRank = "";
-        this.isValid = true;
+        this.newRank = null;
         this.isLoading = false;
         this.webServiceError = false;
     }
