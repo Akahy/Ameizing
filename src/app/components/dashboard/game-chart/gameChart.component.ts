@@ -9,6 +9,7 @@ import * as rankColor from './rankColor.json';
 @Component({
     selector: 'game-chart',
     templateUrl: './game-chart.html',
+    styleUrls: ['./game-chart.css'],
     providers: [DataService]
 })
 
