@@ -3,20 +3,22 @@
     <tr>
       <th class="center" style="width: 5em">#</th>
       <th class="center" style="width: 5em"></th>
-      <th class="center" style="width: 7em">Change</th>
+      <th class="center is-hidden-mobile" style="width: 7em">Change</th>
       <th class="center" style="width: 10em">Rating</th>
-      <th class="center" style="width: 14em">Map</th>
-      <th colspan="2">Heroes</th>
+      <th class="center is-hidden-mobile" style="width: 14em">Map</th>
+      <th class="is-hidden-mobile" colspan="2">Heroes</th>
+      <th class="is-hidden-desktop"></th>
     </tr>
   </thead>
   <tfoot>
     <tr>
       <th class="center">#</th>
       <th class="center"></th>
-      <th class="center">Change</th>
+      <th class="center is-hidden-mobile">Change</th>
       <th class="center">Rating</th>
-      <th class="center">Map</th>
-      <th colspan="2">Heroes</th>
+      <th class="center is-hidden-mobile">Map</th>
+      <th class="is-hidden-mobile" colspan="2">Heroes</th>
+      <th class="is-hidden-desktop"></th>
     </tr>
   </tfoot>
   <tbody>
@@ -24,7 +26,7 @@
       <table>
         <th class="center" style="width: 5em">{{newGameNb}}</th>
         <td style="width: 5em"></td>
-        <td style="width: 7em">
+        <td class="is-hidden-mobile" style="width: 7em">
           <input class="input center" type="text" placeholder="0" disabled>
         </td>
         <td class="center" style="width: 10em">
@@ -33,7 +35,7 @@
           [(ngModel)]="newRank" #rank="ngModel"
           required>
         </td>
-        <td class="center" style="width: 14em">
+        <td class="center is-hidden-mobile" style="width: 14em">
           <span class="select" style="max-width:85%;">
             <select [(ngModel)]="selectedMap" name="slctMap">
               <optgroup><option>None</option></optgroup>
@@ -45,7 +47,7 @@
             </select>
           </span>
         </td>
-        <td>
+        <td class="is-hidden-mobile">
           <a class="button is-primary is-outlined" id="tooltip">
             <span class="icon">
               <i class="fa fa-fw fa-plus"></i>
@@ -74,14 +76,15 @@
         'fa-minus Draw': (game.outcome==='Draw'),
         'fa-chevron-up Victory': (game.outcome==='Victory')}">
       </i></td>
-      <td class="center" [ngClass]=game.outcome> <span *ngIf="game.variation>0">+</span>{{game.variation}}</td>
+      <td class="center is-hidden-mobile" [ngClass]=game.outcome> <span *ngIf="game.variation>0">+</span>{{game.variation}}</td>
       <td class="center">{{game.rating}}</td>
-      <td class="center">
+      <td class="center is-hidden-mobile">
         <div *ngIf="game.map">{{game.map.name}}</div>
       </td>
-      <td colspan="2">
+      <td class="is-hidden-mobile" colspan="2">
           <hero *ngFor="let index of game.game_has_hero" [name]="index.hero.slug" size="game-details"></hero>
       </td>
+      <td class="is-hidden-desktop"></td>
     </tr>
   </tbody>
 </table>
