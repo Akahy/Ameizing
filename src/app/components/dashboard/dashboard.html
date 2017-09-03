@@ -1,6 +1,6 @@
-<div class="tile is-ancestor">
+<div class="tile is-ancestor is-hidden-mobile">
   <div class="tile is-vertical is-parent">
-    <div class="tile is-child is-hidden-mobile">
+    <div class="tile is-child">
       <recent-games class="box" *ngIf="games" [games]="games"></recent-games>
     </div>
     <div class="tile is-child" >
@@ -8,12 +8,23 @@
         <div class="tile is-8 is-child box padd-right">
           <game-chart  *ngIf="games" [games]="games"></game-chart>
         </div>
-        <div class="tile is-child box is-hidden-mobile">
+        <div class="tile is-child box">
           <most-played *ngIf="battletag" [tag]="battletag.tag"></most-played>
         </div>
       </div>
     </div>
     <div class="tile box is-child">
+      <games-details *ngIf="games" [games]="games" [playerId]="battletag.id"></games-details>
+    </div>
+  </div>
+</div>
+
+<div class="tile is-ancestor is-hidden-desktop">
+  <div class="tile is-vertical is-parent" style="padding: 1rem 3rem 2rem 3rem;">
+    <div class="tile is-child">
+      <game-chart *ngIf="games" [games]="games"></game-chart>
+    </div>
+    <div class="tile is-child">
       <games-details *ngIf="games" [games]="games" [playerId]="battletag.id"></games-details>
     </div>
   </div>
