@@ -15,6 +15,7 @@ import { PlayersService} from './../../services/api/players.service';
 export class TopMenuComponent implements OnInit {
     selectedBattletag: {id: string, tag: string};
     battletags: {id: string, tag: string}[] = [];
+    isMobileMenuOpen: boolean = false;
 
     constructor(
         private battletagService: BattletagService,
@@ -46,5 +47,9 @@ export class TopMenuComponent implements OnInit {
     updateBattletag() {
         this.localStorageService.save('battletag', this.selectedBattletag);
         this.battletagService.setBattletag(this.selectedBattletag);
+    }
+
+    toggleMobileMenu() {
+        this.isMobileMenuOpen = !this.isMobileMenuOpen;
     }
 }
