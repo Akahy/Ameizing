@@ -9,7 +9,7 @@
           [ngClass]="playtime.hero"
           [value]= "playtime.time"
           [max]="playtimes[0].time"></progress>
-          <p class="time"><span>{{playtime.time}}</span>h</p>
+          <p class="time">{{playtime.time | time}}</p>
         </div>
       </div>
     </div>

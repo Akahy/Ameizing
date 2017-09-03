@@ -20,6 +20,8 @@ import { HeroSelectionComponent } from './components/dashboard/games-details/her
 import { HeroComponent } from './components/shared/hero/hero.component';
 import { MostPlayedComponent } from './components/dashboard/most-played/mostPlayed.component';
 
+//Pipes
+import { TimePipe } from './utils/time.pipe';
 
 @NgModule({
     imports:      [
@@ -39,7 +41,8 @@ import { MostPlayedComponent } from './components/dashboard/most-played/mostPlay
         GamesDetailsComponent,
         HeroSelectionComponent,
         HeroComponent,
-        MostPlayedComponent
+        MostPlayedComponent,
+        TimePipe
     ],
     bootstrap:    [ AppComponent ]
 })

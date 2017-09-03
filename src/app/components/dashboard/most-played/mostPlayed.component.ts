@@ -32,7 +32,7 @@ export class MostPlayedComponent implements OnChanges {
             .map(key => {
                 return {
                     hero: key==="soldier76" ? "soldier-76" : key,
-                    time: Math.round((playtime[key] + 0.00001) * 10) / 10
+                    time: playtime[key]
                 };
             })
             .sort((a,b) => b.time - a.time)
