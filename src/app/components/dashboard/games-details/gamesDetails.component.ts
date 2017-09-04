@@ -41,8 +41,8 @@ export class GamesDetailsComponent implements OnChanges, OnInit {
     ) {}
 
     ngOnInit() {
-        tippy("#tooltip", {
-            html: document.querySelector('#tooltip-template'),
+        tippy(".hero-tooltip", {
+            html: document.querySelector('.tooltip-template'),
             trigger: 'click',
             interactive: true,
             position: 'top',
