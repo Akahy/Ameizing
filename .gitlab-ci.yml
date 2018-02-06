@@ -72,6 +72,7 @@ deploy-prod:
       .
     - docker run
       -d
+      --restart=unless-stopped
       --label="traefik.enable=true"
       --label="traefik.backend=$CI_PROJECT_PATH_SLUG"
       --label="traefik.port=$TRAEFIK_PORT"
