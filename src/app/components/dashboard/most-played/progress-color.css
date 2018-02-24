@@ -152,18 +152,18 @@
   background-color: var(--lucio);
 }
 
-.progress.winston::-webkit-progress-value {
-  background-color: var(--winston);
-}
-.progress.winston::-moz-progress-bar {
-  background-color: var(--winston);
-}
-
 .progress.mercy::-webkit-progress-value {
   background-color: var(--mercy);
 }
 .progress.mercy::-moz-progress-bar {
   background-color: var(--mercy);
+}
+
+.progress.moira::-webkit-progress-value {
+  background-color: var(--moira);
+}
+.progress.moira::-moz-progress-bar {
+  background-color: var(--moira);
 }
 
 .progress.symmetra::-webkit-progress-value {

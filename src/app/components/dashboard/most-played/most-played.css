@@ -8,6 +8,7 @@
 
 .time {
   text-align: right;
+  text-shadow: 2px 2px 3px grey;
   margin-top: 0.25em;
   margin-right: 0.3em;
 }
