@@ -21,11 +21,11 @@
       </div>
       <div class="navbar-end">
         <div class="nav-item">
-          <span class="select">
+          <div class="select">
             <select [(ngModel)]="selectedBattletag" (ngModelChange)="updateBattletag()">
               <option *ngFor="let battletag of battletags" [ngValue]=battletag>{{battletag.tag}}</option>
             </select>
-          </span>
+          </div>
         </div>
       </div>
     </div>
