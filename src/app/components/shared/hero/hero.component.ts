@@ -3,7 +3,7 @@ import { Component, Input } from '@angular/core';
 @Component({
     selector: 'hero',
     templateUrl: './hero.html',
-    styleUrls: [ './hero.css']
+    styleUrls: [ './hero.sass']
 })
 
 export class HeroComponent {

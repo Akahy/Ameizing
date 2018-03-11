@@ -8,7 +8,7 @@ import { PlayersService} from './../../services/api/players.service';
 @Component({
     selector: 'top-menu',
     templateUrl: './top-menu.html',
-    styleUrls:  [ './top-menu.css'],
+    styleUrls:  [ './top-menu.sass'],
     providers: [ PlayersService ]
 })
 

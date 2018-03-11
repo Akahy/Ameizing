@@ -6,7 +6,7 @@ import { OverwatchService } from './../../../services/api/overwatch.service';
     selector: 'most-played',
     templateUrl: './most-played.html',
     providers: [ OverwatchService ],
-    styleUrls: [ './most-played.css', './progress-color.css']
+    styleUrls: [ './most-played.sass', './progress-color.sass']
 })
 
 export class MostPlayedComponent implements OnChanges {

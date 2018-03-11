@@ -1,16 +1,15 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/throw';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/map';
+import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
+import { catchError, retry } from 'rxjs/operators';
 
 @Injectable()
 export class DataService {
     private apiUrl: string = "https://owi.b00.biz";
 
-    constructor (private http: Http) {}
+    constructor (private http: HttpClient) {}
 
     getHeroes() {
         let url = this.apiUrl + "/heroes";
@@ -35,7 +34,11 @@ export class DataService {
 
     private get(url: string) {
         return this.http.get(url)
-            .map(response => response.json() || {})
-            .catch(error => Observable.throw(error));
+            .pipe(
+                catchError((error) => {
+                    console.error(error);
+                    return new ErrorObservable("Whoooops!");
+                })
+            );
     }
 }

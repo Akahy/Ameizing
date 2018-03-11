@@ -1,7 +1,7 @@
 import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { HttpModule, JsonpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 
 import { ChartsModule } from 'ng2-charts';
 
@@ -28,8 +28,7 @@ import { TimePipe } from './utils/time.pipe';
         RouterModule.forRoot(routerConfig),
         FormsModule,
         ChartsModule,
-        HttpModule,
-        JsonpModule
+        HttpClientModule
     ],
     declarations: [
         AppComponent,

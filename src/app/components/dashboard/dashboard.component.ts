@@ -8,7 +8,7 @@ import { Subscription }   from 'rxjs/Subscription';
 
 @Component({
     templateUrl: './dashboard.html',
-    styleUrls: ['./dashboard.css'],
+    styleUrls: ['./dashboard.sass'],
     providers: [ GamesService ]
 })
 

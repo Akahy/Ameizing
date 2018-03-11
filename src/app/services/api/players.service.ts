@@ -1,20 +1,23 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/throw';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/map';
+import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
+import { catchError, retry } from 'rxjs/operators';
 
 @Injectable()
 export class PlayersService {
     private playersUrl: string = "https://owi.b00.biz/players";
 
-    constructor (private http: Http) {}
+    constructor (private http: HttpClient) {}
 
     getPlayers() {
         return this.http.get(this.playersUrl)
-                        .map(response => response.json() || {})
-                        .catch(error => Observable.throw(error));
+            .pipe(
+                catchError((error) => {
+                    console.error(error);
+                    return new ErrorObservable("Whoooops!");
+                })
+            );
     }
 }
