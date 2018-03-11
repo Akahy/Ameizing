@@ -20,6 +20,31 @@ export class GameChartComponent implements OnChanges {
     public lineChartLabels:Array<any> = [];
     public lineChartOptions:any = {};
 
+    tooltipOptions = {
+        mode: 'index',
+        intersect: false,
+        displayColors: false,
+        callbacks: {
+            label: (tooltipItem, data) => "#" + tooltipItem.xLabel,
+            title: (tooltipItem, data) => this.games[this.games.length-1 - tooltipItem[0].index].rating,
+            footer: (tooltipItem, data) => {
+                if (this.games[this.games.length-1 - tooltipItem[0].index].map)
+                    return this.games[this.games.length-1 - tooltipItem[0].index].map.name
+                return null;
+            }
+        },
+        titleFontSize: 14,
+        titleFontColor: '#000',
+        bodyFontColor: '#000',
+        footerFontColor: '#000',
+        footerFontStyle: 'normal',
+
+        backgroundColor: '#fff',
+        borderColor: '#9542f4',
+        borderWidth: 0.5
+
+    };
+
     public constructor(
         private dataService: DataService
     ) {
@@ -107,7 +132,8 @@ export class GameChartComponent implements OnChanges {
                 annotations: annotations
             },
             maintainAspectRatio: false,
-            responsive: true
+            responsive: true,
+            tooltips: this.tooltipOptions
         }
     }
 
@@ -123,13 +149,4 @@ export class GameChartComponent implements OnChanges {
             });
         }
     }
-
-    // tooltipLabel(tooltipItem:any, data:any) {
-    //     console.log(tooltipItem);
-    //     let result:string = "Score: "+tooltipItem.xLabel+"\n";
-    //     if(this.scores[tooltipItem.index-1] !== null) {
-    //         let value = tooltipItem.xLabel-this.scores[tooltipItem.index-1];
-    //         result += "";
-    //     }
-    // }
 }
