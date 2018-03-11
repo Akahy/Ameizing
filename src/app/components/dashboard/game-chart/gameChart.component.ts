@@ -25,8 +25,12 @@ export class GameChartComponent implements OnChanges {
         intersect: false,
         displayColors: false,
         callbacks: {
-            label: (tooltipItem, data) => "#" + tooltipItem.xLabel,
             title: (tooltipItem, data) => this.games[this.games.length-1 - tooltipItem[0].index].rating,
+            label: (tooltipItem, data) => {
+                let  game = "#" + tooltipItem.xLabel;
+                let date = new Date(this.games[this.games.length-1 - tooltipItem.index].played);
+                return game + " - " + date.toLocaleDateString();
+            },
             footer: (tooltipItem, data) => {
                 if (this.games[this.games.length-1 - tooltipItem[0].index].map)
                     return this.games[this.games.length-1 - tooltipItem[0].index].map.name
