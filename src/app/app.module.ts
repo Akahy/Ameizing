@@ -15,6 +15,7 @@ import { TopMenuComponent }  from './components/top-menu/topMenu.component';
 import { DashboardComponent }  from './components/dashboard/dashboard.component';
 import { GameChartComponent } from './components/dashboard/game-chart/gameChart.component';
 import { GamesDetailsComponent } from './components/dashboard/games-details/gamesDetails.component';
+import { EditGameComponent } from './components/dashboard/games-details/edit-game/editGame.component';
 import { HeroSelectionComponent } from './components/dashboard/games-details/hero-selection/heroSelection.component';
 import { HeroComponent } from './components/shared/hero/hero.component';
 import { MostPlayedComponent } from './components/dashboard/most-played/mostPlayed.component';
@@ -36,6 +37,7 @@ import { TimePipe } from './utils/time.pipe';
         DashboardComponent,
         GameChartComponent,
         GamesDetailsComponent,
+        EditGameComponent,
         HeroSelectionComponent,
         HeroComponent,
         MostPlayedComponent,

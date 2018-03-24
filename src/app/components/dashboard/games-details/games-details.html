@@ -22,52 +22,11 @@
     </tr>
   </tfoot>
   <tbody>
-    <tr><td colspan="7"><form>
-      <table>
-        <th class="center" style="width: 5em">{{newGameNb}}</th>
-        <td style="width: 5em"></td>
-        <td class="is-hidden-mobile" style="width: 7em">
-          <input class="input center" type="text" placeholder="0" disabled>
-        </td>
-        <td class="center" style="width: 10em">
-          <input class="input center" type="number"
-          name="nRank" placeholder="Rating" style="max-width:85%;"
-          [(ngModel)]="newRank" #rank="ngModel"
-          required>
-        </td>
-        <td class="center is-hidden-mobile" style="width: 14em">
-          <span class="select" style="max-width:85%;">
-            <select [(ngModel)]="selectedMap" name="slctMap">
-              <optgroup><option>None</option></optgroup>
-              <optgroup *ngFor="let type of mapTypes" [label]="type.name">
-                  <option [ngValue]="map" *ngFor="let map of getMaps(type.id)">
-                      {{map.name}}
-                  </option>
-              </optgroup>
-            </select>
-          </span>
-        </td>
-        <td class="is-hidden-mobile">
-          <a class="button is-primary is-outlined hero-tooltip">
-            <span class="icon">
-              <i class="fa fa-fw fa-plus"></i>
-            </span>
-          </a>
-          <ng-container>
-            <span *ngFor="let hero of selectedHeroes">
-              <hero name="{{hero.name}}" size="game-details"></hero>
-            </span>
-          </ng-container>
-        </td>
-        <td class="td-button-add">
-          <button class="button-add button is-primary"
-          type="submit"
-          [ngClass]="{'is-loading': isLoading, 'is-danger': webServiceError}"
-          [disabled]="!rank.valid || !inRange()"
-          (click)="addGame()">Add</button>
-        </td>
-      </table>
-    </form></td></tr>
+
+    <tr><td colspan="7">
+      <edit-game [gameId]="newGameNb" [playerId]="playerId"></edit-game>
+    </td></tr>
+
     <tr *ngFor="let game of games">
       <th class="center">{{game.game_id}}</th>
       <td class="center">
@@ -88,10 +47,3 @@
     </tr>
   </tbody>
 </table>
-
-<!-- Tooltip content -->
-<div style="display: none;">
-  <div class="tooltip-template">
-    <hero-selection (heroClicked)="heroSelected($event)"></hero-selection>
-  </div>
-</div>
