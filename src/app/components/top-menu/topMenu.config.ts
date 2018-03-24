@@ -7,18 +7,6 @@ export const routerConfig: Routes = [
         path: 'dashboard',
         component: DashboardComponent
     },
-    // {
-    //     path: 'stats',
-    //     component: StatsComponent
-    // },
-    // {
-    //     path: 'lab',
-    //     component: LabComponent
-    // },
-    // {
-    //     path: 'achievments',
-    //     component: AchievmentsComponent
-    // },
     {
         path: '',
         redirectTo: '/dashboard',
