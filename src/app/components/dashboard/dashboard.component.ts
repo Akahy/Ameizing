@@ -16,6 +16,7 @@ export class DashboardComponent implements OnInit {
     battletag: {id: string, tag: string};
     battletagSubscription: Subscription;
     newGameSubscription: Subscription;
+    editGameSubscription: Subscription;
     games: any;
 
     constructor(
@@ -31,6 +32,9 @@ export class DashboardComponent implements OnInit {
       this.newGameSubscription = this.newGameService.newGameTagId$.subscribe(
           (battletagId: string) => { this.onNewGame(battletagId); }
       );
+      this.editGameSubscription = this.newGameService.editGameTagId$.subscribe(
+        (battletagId: string) => { if(battletagId === this.battletag.id) this.getGames(); }
+    );
     }
 
     getGames() {

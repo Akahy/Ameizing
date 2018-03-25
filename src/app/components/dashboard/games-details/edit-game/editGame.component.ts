@@ -1,4 +1,4 @@
-import { Component, Input, Output, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 
 import { HeroSelectionComponent } from './../hero-selection/heroSelection.component';
 
@@ -17,6 +17,8 @@ import * as tippy from 'tippy.js';
 
 export class EditGameComponent implements OnChanges, OnInit {
     static readonly DEFAULT_MAP = "None";
+
+    @Output() cancelEdition = new EventEmitter<any>();
 
     @Input() gameId:any;
     @Input() playerId: string;
@@ -125,6 +127,10 @@ export class EditGameComponent implements OnChanges, OnInit {
         )
     }
 
+    editGame() {
+        console.log("TODO with new API else it will launch a nuclear bomb");
+    }
+
     inRange() {
         return (this.newRank > 0 && this.newRank <= 5000)
     }
@@ -138,6 +144,10 @@ export class EditGameComponent implements OnChanges, OnInit {
         this.newRank = null;
         this.isLoading = false;
         this.webServiceError = false;
+    }
+
+    cancelEdit() {
+        this;this.cancelEdition.emit();
     }
 
     initMaps(maps: any) {

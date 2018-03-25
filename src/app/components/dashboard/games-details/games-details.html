@@ -64,7 +64,8 @@
             [edit]="true"
             [rank]="game.rating"
             [gameMap]="game.map"
-            [gameHeroes]="game.game_has_hero">
+            [gameHeroes]="game.game_has_hero"
+            (cancelEdition)="cancelEdition($event)">
           </edit-game>
       </td>
 

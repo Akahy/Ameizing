@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { DataService } from './../../../../services/api/data.service';
 
@@ -10,7 +10,7 @@ import { DataService } from './../../../../services/api/data.service';
     styleUrls: [ './hero-selection.css']
 })
 
-export class HeroSelectionComponent implements OnInit, OnChanges {
+export class HeroSelectionComponent implements OnInit {
     @Output() heroClicked = new EventEmitter<{id: string, name: string}>();
     @Input() preselectedHeroes: any;
 
@@ -26,22 +26,6 @@ export class HeroSelectionComponent implements OnInit, OnChanges {
             heroes =>  { this.heroes = heroes; this.initHeroes(); },
             error => console.log(error.toString())
         )
-    }
-
-    ngOnChanges(changes: SimpleChanges) {
-    //     if (changes['preselectedHeroes'] && this.preselectedHeroes) {
-    //         console.table(this.heroesByType);
-    //         for(let hero of this.preselectedHeroes) {
-    //             for(let type in this.heroesByType) {
-    //                 let element = this.heroesByType[type].find(h =>
-    //                     h.id === hero.hero.id
-    //                 );
-    //                 console.log(element);
-
-    //                 element.selected = true;
-    //             }
-    //         }
-    //     }
     }
 
     initHeroes() {

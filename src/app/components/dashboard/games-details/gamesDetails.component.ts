@@ -41,4 +41,8 @@ export class GamesDetailsComponent implements OnChanges {
     editGame(gameId: number) {
         this.editedGame = gameId;
     }
+
+    cancelEdition() {
+        this.editedGame = null;
+    }
 }
