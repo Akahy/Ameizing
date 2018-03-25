@@ -12,7 +12,7 @@ import * as tippy from 'tippy.js';
     selector: 'games-details',
     templateUrl: './games-details.html',
     providers: [ DataService, GamesService ],
-    styleUrls: [ './games-details.sass']
+    styleUrls: [ './games-details.sass', './table-cols.sass']
 })
 
 export class GamesDetailsComponent implements OnChanges {

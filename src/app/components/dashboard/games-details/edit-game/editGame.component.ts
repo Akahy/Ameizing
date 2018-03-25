@@ -12,7 +12,7 @@ import * as tippy from 'tippy.js';
     selector: 'edit-game',
     templateUrl: './edit-game.html',
     providers: [ DataService, GamesService ],
-    styleUrls: [ './edit-game.sass']
+    styleUrls: [ './edit-game.sass', './../table-cols.sass']
 })
 
 export class EditGameComponent implements OnChanges, OnInit {
@@ -25,7 +25,6 @@ export class EditGameComponent implements OnChanges, OnInit {
     //Form input
     selectedMap: any = EditGameComponent.DEFAULT_MAP;
     selectedHeroes: {id: string, name: string}[] = [];
-    newGameNb: number;
     newRank: number;
     //Form control
     isLoading: boolean = false;
@@ -85,7 +84,7 @@ export class EditGameComponent implements OnChanges, OnInit {
         this.isLoading = true;
         let map = this.selectedMap === "None" ? null : this.selectedMap.id;
         this.gamesService.postGame(
-            this.newGameNb,
+            this.gameId,
             this.playerId,
             this.newRank,
             map

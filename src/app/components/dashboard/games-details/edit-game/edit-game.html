@@ -1,32 +1,19 @@
 <form style="width:100%">
   <table>
-
-      <thead>
-          <tr>
-            <th class="center" style="width: 5em">#</th>
-            <th class="center" style="width: 5em"></th>
-            <th class="center is-hidden-mobile" style="width: 7em">Change</th>
-            <th class="center" style="width: 10em">Rating</th>
-            <th class="center is-hidden-mobile" style="width: 14em">Map</th>
-            <th class="is-hidden-mobile" colspan="2">Heroes</th>
-            <th class="is-hidden-desktop"></th>
-          </tr>
-        </thead>
-        <tbody>
-    <th class="center" colspan="1" style="width: 5em">{{newGameNb}}</th>
-    <td style="width: 5em" colspan="1"></td>
-    <td class="is-hidden-mobile" style="width: 7em">
+    <th class="center game-id" colspan="1">{{gameId}}</th>
+    <td class="arrow" colspan="1"></td>
+    <td class="change is-hidden-mobile">
       <input class="input center" type="text" placeholder="0" disabled>
     </td>
-    <td class="center" style="width: 10em">
+    <td class="center rank">
       <input class="input center" type="number"
       name="nRank" placeholder="Rating" style="max-width:85%;"
       [(ngModel)]="newRank" #rank="ngModel"
       required>
     </td>
-    <td class="td-maps center is-hidden-mobile" >
-      <div class="control" style="width: 14em">
-      <div class="select" style="max-width:85%;">
+    <td class="maps center is-hidden-mobile">
+      <div class="control" >
+      <div class="select" style="width: 12em">
         <select [(ngModel)]="selectedMap" name="slctMap">
           <optgroup><option>None</option></optgroup>
           <optgroup *ngFor="let type of mapTypes" [label]="type.name">
@@ -38,7 +25,7 @@
       </div>
     </div>
     </td>
-    <td class="is-hidden-mobile" colspan="2">
+    <td class="is-hidden-mobile" colspan="2" style="padding-left:0;" >
       <a class="button is-primary is-outlined hero-tooltip">
         <span class="icon">
           <i class="fa fa-fw fa-plus"></i>
@@ -57,7 +44,6 @@
       [disabled]="!rank.valid || !inRange()"
       (click)="addGame()">Add</button>
     </td>
-  </tbody>
   </table>
 </form>
 
