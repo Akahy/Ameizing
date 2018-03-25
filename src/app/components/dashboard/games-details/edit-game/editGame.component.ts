@@ -17,16 +17,25 @@ import * as tippy from 'tippy.js';
 
 export class EditGameComponent implements OnChanges, OnInit {
     static readonly DEFAULT_MAP = "None";
+
     @Input() gameId:any;
     @Input() playerId: string;
-    maps: any = [];
+
+    // Edit input
+    @Input() edit: boolean = false;
+    @Input() rank: number;
+    @Input() gameMap: any;
+    @Input() gameHeroes: any;
+
+    // Datas
+    mapsByType: any = [];
     mapTypes: any = [];
-    heroes: any = [];
-    //Form input
+
+    // Form input
     selectedMap: any = EditGameComponent.DEFAULT_MAP;
     selectedHeroes: {id: string, name: string}[] = [];
     newRank: number;
-    //Form control
+    // Form control
     isLoading: boolean = false;
     webServiceError: boolean = false;
 
@@ -51,22 +60,31 @@ export class EditGameComponent implements OnChanges, OnInit {
             theme: 'light'
         });
 
-        this.dataService.getMaps()
-        .subscribe(
-            maps =>  { this.maps = maps; },
+        this.dataService.getMaps().subscribe(
+            maps => this.initMaps(maps),
             error => console.error(error.toString())
-        )
+        );
 
-        this.dataService.getMapTypes()
-        .subscribe(
+        this.dataService.getMapTypes().subscribe(
             types => this.mapTypes = types,
             error => console.error(error.toString())
-        )
+        );
     }
 
     ngOnChanges(changes: SimpleChanges) {
-        if(changes['playerId']) {
+        if (changes['playerId']) {
             this.resetForm();
+        }
+        if (changes['rank']) {
+            this.newRank = this.rank;
+        }
+        if (changes['gameHeroes']) {
+            for (let hero of this.gameHeroes) {
+                this.selectedHeroes.push({
+                    id: hero.hero.id,
+                    name: hero.hero.slug
+                })
+            }
         }
     }
 
@@ -122,7 +140,18 @@ export class EditGameComponent implements OnChanges, OnInit {
         this.webServiceError = false;
     }
 
-    getMaps(id: any) {
-        return this.maps.filter(map => map.game_mode.id==id);
+    initMaps(maps: any) {
+        for(let map of maps) {
+            if (!this.mapsByType[map.game_mode.id]) {
+                this.mapsByType[map.game_mode.id] = [];
+            }
+            this.mapsByType[map.game_mode.id].push(map);
+        }
+        if (this.gameMap) {
+            let index = this.mapsByType[this.gameMap.game_mode_id].find( map =>
+                map.id === this.gameMap.id
+            );
+            this.selectedMap = index ? index : EditGameComponent.DEFAULT_MAP;
+        }
     }
 }

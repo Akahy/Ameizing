@@ -16,8 +16,8 @@
       <div class="select" style="width: 12em">
         <select [(ngModel)]="selectedMap" name="slctMap">
           <optgroup><option>None</option></optgroup>
-          <optgroup *ngFor="let type of mapTypes" [label]="type.name">
-              <option [ngValue]="map" *ngFor="let map of getMaps(type.id)">
+          <optgroup  *ngFor="let type of mapTypes" [label]="type.name">
+              <option [ngValue]="map" *ngFor="let map of mapsByType[type.id]">
                   {{map.name}}
               </option>
           </optgroup>
@@ -38,11 +38,21 @@
       </ng-container>
     </td>
     <td class="td-button-add">
-      <button class="button-add button is-primary"
+      <button class="button is-primary" *ngIf="!edit"
       type="submit"
       [ngClass]="{'is-loading': isLoading, 'is-danger': webServiceError}"
       [disabled]="!rank.valid || !inRange()"
       (click)="addGame()">Add</button>
+
+      <button class="button is-primary" *ngIf="edit"
+        type="submit"
+        [ngClass]="{'is-loading': isLoading, 'is-danger': webServiceError}"
+        [disabled]="!rank.valid || !inRange()"
+        (click)="editGame()">Edit</button>
+      <button class="button is-danger" *ngIf="edit"
+        type="submit"
+        [ngClass]="{'is-loading': isLoading}"
+        (click)="cancelEdit()">Cancel</button>
     </td>
   </table>
 </form>
@@ -50,6 +60,7 @@
 <!-- Tooltip content -->
 <div style="display: none;">
   <div class="tooltip-template">
-    <hero-selection (heroClicked)="heroSelected($event)"></hero-selection>
+    <hero-selection (heroClicked)="heroSelected($event)"
+      [preselectedHeroes]="gameHeroes"></hero-selection>
   </div>
 </div>

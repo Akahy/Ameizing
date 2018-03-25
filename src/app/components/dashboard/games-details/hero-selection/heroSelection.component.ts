@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, OnChanges, SimpleChanges } from '@angular/core';
 
 import { DataService } from './../../../../services/api/data.service';
 
@@ -10,8 +10,9 @@ import { DataService } from './../../../../services/api/data.service';
     styleUrls: [ './hero-selection.css']
 })
 
-export class HeroSelectionComponent implements OnInit {
+export class HeroSelectionComponent implements OnInit, OnChanges {
     @Output() heroClicked = new EventEmitter<{id: string, name: string}>();
+    @Input() preselectedHeroes: any;
 
     heroes: any = [];
     heroesByType: any[] = [];
@@ -27,6 +28,22 @@ export class HeroSelectionComponent implements OnInit {
         )
     }
 
+    ngOnChanges(changes: SimpleChanges) {
+    //     if (changes['preselectedHeroes'] && this.preselectedHeroes) {
+    //         console.table(this.heroesByType);
+    //         for(let hero of this.preselectedHeroes) {
+    //             for(let type in this.heroesByType) {
+    //                 let element = this.heroesByType[type].find(h =>
+    //                     h.id === hero.hero.id
+    //                 );
+    //                 console.log(element);
+
+    //                 element.selected = true;
+    //             }
+    //         }
+    //     }
+    }
+
     initHeroes() {
         for(let hero of this.heroes) {
             if (!this.heroesByType.hasOwnProperty(hero.type)) {
@@ -38,6 +55,19 @@ export class HeroSelectionComponent implements OnInit {
                 'name': hero.slug,
                 'selected': false
             });
+        }
+
+        if (this.preselectedHeroes) {
+            for(let hero of this.preselectedHeroes) {
+                for(let type of this.types) {
+                    let element = this.heroesByType[type].find(h =>
+                        h.id === hero.hero.id
+                    );
+                    if (element) {
+                        element.selected = true;
+                    }
+                }
+            }
         }
     }
 
