@@ -7,6 +7,7 @@
       <th class="center rank">Rating</th>
       <th class="center maps is-hidden-mobile">Map</th>
       <th class="is-hidden-mobile" colspan="2">Heroes</th>
+      <th class="is-hidden-mobile"></th>
       <th class="is-hidden-desktop"></th>
     </tr>
   </thead>
@@ -18,32 +19,55 @@
       <th class="center">Rating</th>
       <th class="center is-hidden-mobile">Map</th>
       <th class="is-hidden-mobile" colspan="2">Heroes</th>
+      <th class="is-hidden-mobile"></th>
       <th class="is-hidden-desktop"></th>
     </tr>
   </tfoot>
   <tbody>
 
-    <tr><td colspan="7">
+    <tr><td colspan="8">
       <edit-game [gameId]="newGameNb" [playerId]="playerId"></edit-game>
     </td></tr>
 
     <tr *ngFor="let game of games">
-      <th class="center">{{game.game_id}}</th>
-      <td class="center">
+      <th class="center" *ngIf="game.game_id != editedGame">{{game.game_id}}</th>
+      <td class="center" *ngIf="game.game_id != editedGame">
         <i class="fa fa-fw center"
         [ngClass]="{'fa-chevron-down Defeat': (game.outcome==='Defeat'),
         'fa-minus Draw': (game.outcome==='Draw'),
         'fa-chevron-up Victory': (game.outcome==='Victory')}">
       </i></td>
-      <td class="center is-hidden-mobile" [ngClass]=game.outcome> <span *ngIf="game.variation>0">+</span>{{game.variation}}</td>
-      <td class="center">{{game.rating}}</td>
-      <td class="center is-hidden-mobile">
+      <td class="center is-hidden-mobile" [ngClass]=game.outcome *ngIf="game.game_id != editedGame">
+        <span *ngIf="game.variation>0">+</span>{{game.variation}}
+      </td>
+      <td class="center" *ngIf="game.game_id != editedGame">{{game.rating}}</td>
+      <td class="center is-hidden-mobile" *ngIf="game.game_id != editedGame">
         <div *ngIf="game.map">{{game.map.name}}</div>
       </td>
-      <td class="is-hidden-mobile" colspan="2">
+      <td class="is-hidden-mobile" colspan="2" *ngIf="game.game_id != editedGame">
           <hero *ngFor="let index of game.game_has_hero" [name]="index.hero.slug" size="game-details"></hero>
       </td>
-      <td class="is-hidden-desktop"></td>
+      <td class="td-button-edit" *ngIf="game.game_id != editedGame">
+          <button class="button-edit button is-white"
+            (click)="editGame(game.game_id)">
+            <span class="icon">
+              <i class="fa fa-fw fa-pencil"></i>
+            </span>
+          </button>
+      </td>
+      <th class="is-hidden-desktop"></th>
+
+      <td colspan="8" *ngIf="game.game_id === editedGame">
+          <edit-game
+            [gameId]="game.game_id"
+            [playerId]="playerId"
+            [edit]="true"
+            [rank]="game.rating"
+            [gameMap]="game.map"
+            [gameHeroes]="game.game_has_hero">
+          </edit-game>
+      </td>
+
     </tr>
   </tbody>
 </table>

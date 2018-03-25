@@ -21,6 +21,7 @@ export class GamesDetailsComponent implements OnChanges {
     @Input() playerId: string;
 
     newGameNb: number;
+    editedGame: number;
 
     constructor (
         private dataService: DataService,
@@ -35,5 +36,9 @@ export class GamesDetailsComponent implements OnChanges {
         else {
             this.newGameNb = 1;
         }
+    }
+
+    editGame(gameId: number) {
+        this.editedGame = gameId;
     }
 }
