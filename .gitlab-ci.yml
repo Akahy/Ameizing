@@ -8,9 +8,7 @@ cache:
 
 build:
   stage: build
-  image: node:alpine
-  before_script:
-    - apk add --no-cache python2
+  image: node:9-alpine
   script:
     - npm install
     - npm run build:prod
