@@ -25,7 +25,7 @@ export default class Home extends Vue {
     if (this.state !== state) {
       this.$router.push({ name: 'landing', query: { status: 'error' } });
     } else {
-      localStorage.deleteItem('state');
+      localStorage.removeItem('state');
     }
 
     this.retrieveToken(this.code)

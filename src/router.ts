@@ -9,14 +9,14 @@ Vue.use(Router);
 const router = new Router({
   routes: [
     {
-      path: '/',
+      path: '/login',
       name: 'landing',
       component: Landing,
     },
     {
-      path: '/home',
+      path: '/',
       name: 'home',
-      component: () => import(/* webpackChunkName home */ './views/Home.vue'),
+      component: () => import(/* webpackChunkName profile */ './views/Home.vue'),
       meta: { requiresAuth: true },
     },
     {
@@ -25,32 +25,31 @@ const router = new Router({
       component: () => import(/* webpackChunkName authorize */ './views/Authorize.vue'),
       props: (route) => ({ code: route.query.code, state: route.query.state }),
     },
-    {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/About.vue'),
-    },
   ],
 });
 
 router.beforeEach((to, from, next) => {
   store.commit('initToken');
 
-  if (to.matched.some((record) => record.meta.requiresAuth)) {
-    if (store.state.authentification.token
-      && store.state.authentification.expireAt > Math.floor(Date.now() / 1000)) {
-        return next();
+  if (store.state.authentification.token
+    && store.state.authentification.expireAt > Math.floor(Date.now() / 1000)) {
+
+    if (to.name === 'landing' || to.name === 'authorize') {
+      return next({
+        path: '/',
+      });
     }
-    store.commit('deleteToken');
+    return next();
+  }
+
+  store.commit('deleteToken');
+  if (to.matched.some((record) => record.meta.requiresAuth)) {
     return next({
-      path: '/',
+      path: '/login',
     });
   }
 
-  return next ();
+  return next();
 });
 
 export default router;
