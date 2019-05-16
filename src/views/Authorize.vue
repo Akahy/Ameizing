@@ -1,8 +1,6 @@
 <template>
-  <div class="home">
-    {{ code }}
-    <br>
-    {{ state }}
+  <div class="landing">
+    <div class="notification">Connecting</div>
   </div>
 </template>
 
@@ -23,20 +21,27 @@ export default class Home extends Vue {
   state!: string;
 
   created() {
+    const state = localStorage.getItem('state');
+    if (this.state !== state) {
+      this.$router.push({ name: 'landing', query: { status: 'error' } });
+    } else {
+      localStorage.deleteItem('state');
+    }
+
     this.retrieveToken(this.code)
       .then(() => {
         this.$router.push('home');
       })
       .catch(() => {
-        this.$router.push('landing');
+        this.$router.push({ name: 'landing', query: { status: 'error' } });
       });
   }
 }
 </script>
 
 <style lang="sass" scoped>
-.home
-  height: 100vh;
-  background-color: pink;
+.landing 
+    background-image: url('../assets/mei.png')
 </style>
+
 

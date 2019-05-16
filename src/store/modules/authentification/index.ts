@@ -6,7 +6,7 @@ import { AuthentificationState } from './types';
 
 const state: AuthentificationState = {
     token: null,
-    expiredAt: null,
+    expireAt: null,
     issuedAt: null,
 };
 
